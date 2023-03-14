@@ -41,7 +41,7 @@ private extension MainViewController {
 		navigationItem.rightBarButtonItem = makeRightBarButtonItem()
 		tableView.dataSource = self
 		tableView.separatorColor = .clear
-		tableView.register(TodaysWeatherCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherCell.self))
+		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
@@ -81,8 +81,7 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherCell.self), for: indexPath) as! TodaysWeatherCell
-		cell.backgroundColor = .red
+		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
 		return cell
 	}
 	
