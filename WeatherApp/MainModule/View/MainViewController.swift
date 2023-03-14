@@ -36,7 +36,7 @@ private extension MainViewController {
 		tableView.dataSource = self
 		tableView.separatorColor = .clear
 		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "111")
+		tableView.register(HourlyWeatherSetCell.self, forCellReuseIdentifier: String(describing: HourlyWeatherSetCell.self))
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "222")
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
@@ -81,8 +81,7 @@ extension MainViewController: UITableViewDataSource {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
 			return cell
 		} else if indexPath.row == 1 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "111", for: indexPath)
-			cell.backgroundColor = .blue
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
 			return cell
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: "222", for: indexPath)

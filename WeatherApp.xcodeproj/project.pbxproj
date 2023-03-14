@@ -19,6 +19,8 @@
 		09D45D4229C0842B00B88DA9 /* TodaysWeatherSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D4129C0842B00B88DA9 /* TodaysWeatherSetCell.swift */; };
 		09D45D4529C0852800B88DA9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 09D45D4429C0852800B88DA9 /* SnapKit */; };
 		09D45D4729C0B6F500B88DA9 /* TodaysWeatherElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D4629C0B6F500B88DA9 /* TodaysWeatherElements.swift */; };
+		09D45D4C29C0DD1A00B88DA9 /* HourlyWeatherSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D4B29C0DD1A00B88DA9 /* HourlyWeatherSetCell.swift */; };
+		09D45D4E29C0E51100B88DA9 /* HourlyWeatherBarElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D4D29C0E51100B88DA9 /* HourlyWeatherBarElements.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		09D45D3F29C07E4400B88DA9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		09D45D4129C0842B00B88DA9 /* TodaysWeatherSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysWeatherSetCell.swift; sourceTree = "<group>"; };
 		09D45D4629C0B6F500B88DA9 /* TodaysWeatherElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysWeatherElements.swift; sourceTree = "<group>"; };
+		09D45D4B29C0DD1A00B88DA9 /* HourlyWeatherSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherSetCell.swift; sourceTree = "<group>"; };
+		09D45D4D29C0E51100B88DA9 /* HourlyWeatherBarElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherBarElements.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 		09D45D4929C0DA6500B88DA9 /* HourCell */ = {
 			isa = PBXGroup;
 			children = (
+				09D45D4B29C0DD1A00B88DA9 /* HourlyWeatherSetCell.swift */,
+				09D45D4D29C0E51100B88DA9 /* HourlyWeatherBarElements.swift */,
 			);
 			path = HourCell;
 			sourceTree = "<group>";
@@ -245,10 +251,12 @@
 				09D45D4729C0B6F500B88DA9 /* TodaysWeatherElements.swift in Sources */,
 				098121FC29C0611500737D51 /* SceneDelegate.swift in Sources */,
 				0981224229C0724000737D51 /* MainPresenter.swift in Sources */,
+				09D45D4E29C0E51100B88DA9 /* HourlyWeatherBarElements.swift in Sources */,
 				0981224429C075DB00737D51 /* MainViewController.swift in Sources */,
 				0981224629C0784A00737D51 /* ModuleBuilder.swift in Sources */,
 				09D45D4229C0842B00B88DA9 /* TodaysWeatherSetCell.swift in Sources */,
 				09D45D4029C07E4400B88DA9 /* Extensions.swift in Sources */,
+				09D45D4C29C0DD1A00B88DA9 /* HourlyWeatherSetCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
