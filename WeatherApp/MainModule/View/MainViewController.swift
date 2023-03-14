@@ -33,6 +33,7 @@ extension MainViewController: MainViewProtocol {
 private extension MainViewController {
 	func initialize() {
 		navigationItem.rightBarButtonItem = makeRightBarButtonItem()
+		tableView.isScrollEnabled = false
 		tableView.dataSource = self
 		tableView.separatorColor = .clear
 		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
