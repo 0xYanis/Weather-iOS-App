@@ -20,35 +20,52 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	
 	//MARK: - Private constants
 	private enum UIConstants {
-		static let labelToCellInset: CGFloat = 5
-		static let timeLabelFontSize: CGFloat = 14
+		static let timeLabelFontSize: CGFloat = 12
 		static let imageViewSize: CGFloat = 50
-		static let imageViewToTimeOffset: CGFloat = 8
+		static let imageViewToTimeOffset: CGFloat = 10
+		static let temperatureLabelFontSize: CGFloat = 24
+		static let temperatureLabelToImageOffset: CGFloat = 5
 	}
 	
 	// MARK: - Private properties
 	private let timeLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.timeLabelFontSize)
-		label.text = "Now"
+		label.text = "9:00 AM"
 		label.textColor = .white
 		return label
 	}()
 	
 	private let imageView: UIImageView = {
 		let view = UIImageView()
-		view.image = UIImage(named: "cloud")
+		view.image = UIImage(named: "rainycloud")
 		view.contentMode = .scaleAspectFill
 		return view
 	}()
 	
 	private let temperatureLabel: UILabel = {
 		let label = UILabel()
+		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
+		label.text = "10" + "\u{00B0}"
+		label.textColor = .white
+		label.layer.shadowColor = UIColor.black.cgColor
+		label.layer.shadowOffset = CGSize(width: 0, height: 3)
+		label.layer.shadowRadius = 5
+		label.layer.shadowOpacity = 0.5
+		label.layer.masksToBounds = false
 		return label
 	}()
 	
 	private let degreeLabel: UILabel = {
 		let label = UILabel()
+		//
+		label.text = "\u{00B0}"
+		label.textColor = .white
+		label.layer.shadowColor = UIColor.black.cgColor
+		label.layer.shadowOffset = CGSize(width: 0, height: 3)
+		label.layer.shadowRadius = 2
+		label.layer.shadowOpacity = 0.5
+		label.layer.masksToBounds = false
 		return label
 	}()
 	
@@ -68,6 +85,11 @@ private extension HourlyWeatherBarElements {
 			make.centerX.equalToSuperview()
 			make.height.equalTo(UIConstants.imageViewSize)
 			make.width.equalTo(UIConstants.imageViewSize)
+		}
+		contentView.addSubview(temperatureLabel)
+		temperatureLabel.snp.makeConstraints { make in
+			make.top.equalTo(imageView.snp.bottom).offset(UIConstants.temperatureLabelToImageOffset)
+			make.centerX.equalToSuperview()
 		}
 	}
 }
