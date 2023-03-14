@@ -21,16 +21,16 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	//MARK: - Private constants
 	private enum UIConstants {
 		static let timeLabelFontSize: CGFloat = 12
-		static let imageViewSize: CGFloat = 50
+		static let imageViewSize: CGFloat = 40
 		static let imageViewToTimeOffset: CGFloat = 10
-		static let temperatureLabelFontSize: CGFloat = 24
+		static let temperatureLabelFontSize: CGFloat = 20
 		static let temperatureLabelToImageOffset: CGFloat = 5
 	}
 	
 	// MARK: - Private properties
 	private let timeLabel: UILabel = {
 		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.timeLabelFontSize)
+		label.font = UIFont(name: "Helvetica", size: UIConstants.timeLabelFontSize)
 		label.text = "9:00 AM"
 		label.textColor = .white
 		return label

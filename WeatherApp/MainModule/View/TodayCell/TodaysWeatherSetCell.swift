@@ -26,7 +26,7 @@ class TodaysWeatherSetCell: UITableViewCell {
 	
 	//MARK: - Private Constants
 	private enum UIConstants {
-		static let collectionViewHeight: CGFloat = 400
+		static let collectionViewHeight: CGFloat = 420
 	}
 	
 	// MARK: - Private properties
