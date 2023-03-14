@@ -24,15 +24,9 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewProtocol {
-	func setLocation(location: String) {
-		//
-	}
+	func setLocation(location: String) { }
 	
-	func setAnotherForecast(dayNumber: Int) {
-		//
-	}
-	
-	
+	func setAnotherForecast(dayNumber: Int) { }
 }
 
 // MARK: Private methods
@@ -42,6 +36,8 @@ private extension MainViewController {
 		tableView.dataSource = self
 		tableView.separatorColor = .clear
 		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "111")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "222")
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
@@ -77,13 +73,21 @@ private extension MainViewController {
 // MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return 3
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
-		return cell
+		if indexPath.row == 0 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
+			return cell
+		} else if indexPath.row == 1 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "111", for: indexPath)
+			cell.backgroundColor = .blue
+			return cell
+		} else {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "222", for: indexPath)
+			cell.backgroundColor = .yellow
+			return cell
+		}
 	}
-	
-	
 }

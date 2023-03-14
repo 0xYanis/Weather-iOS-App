@@ -17,6 +17,7 @@ class TodaysWeatherSetCell: UITableViewCell {
 	// MARK: - Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		initialize()
 	}
 	
 	required init?(coder: NSCoder) {
@@ -25,7 +26,7 @@ class TodaysWeatherSetCell: UITableViewCell {
 	
 	//MARK: - Private Constants
 	private enum UIConstants {
-		static let collectionViewHeight: CGFloat = 250
+		static let collectionViewHeight: CGFloat = 400
 	}
 	
 	// MARK: - Private properties
@@ -35,16 +36,19 @@ class TodaysWeatherSetCell: UITableViewCell {
 // MARK: - Private methods
 private extension TodaysWeatherSetCell {
 	func initialize() {
-		let layout = UICollectionViewLayout()
+		backgroundColor = .clear
+		let layout = UICollectionViewFlowLayout()
+		layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
+		collectionView.register(TodaysWeatherElements.self, forCellWithReuseIdentifier: String(describing: TodaysWeatherElements.self))
 		collectionView.dataSource = self
-		
 		contentView.addSubview(collectionView)
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
 			make.height.equalTo(UIConstants.collectionViewHeight)
 		}
+		// MARK: - DELETE BACKGROUND COLOR
+		collectionView.backgroundColor = nil
 	}
 }
 
@@ -55,7 +59,7 @@ extension TodaysWeatherSetCell: UICollectionViewDataSource {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TodaysWeatherElements.self), for: indexPath) as! TodaysWeatherElements
 		return cell
 	}
 }
