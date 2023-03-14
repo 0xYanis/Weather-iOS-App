@@ -22,7 +22,7 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	private enum UIConstants {
 		static let labelToCellInset: CGFloat = 5
 		static let timeLabelFontSize: CGFloat = 14
-		static let imageViewHeight: CGFloat = 30
+		static let imageViewSize: CGFloat = 50
 		static let imageViewToTimeOffset: CGFloat = 8
 	}
 	
@@ -37,7 +37,7 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	
 	private let imageView: UIImageView = {
 		let view = UIImageView()
-		view.image = UIImage(named: "rainycloud")
+		view.image = UIImage(named: "cloud")
 		view.contentMode = .scaleAspectFill
 		return view
 	}()
@@ -66,7 +66,8 @@ private extension HourlyWeatherBarElements {
 		imageView.snp.makeConstraints { make in
 			make.top.equalTo(timeLabel.snp.bottom).offset(UIConstants.imageViewToTimeOffset)
 			make.centerX.equalToSuperview()
-			make.width.equalTo(UIConstants.imageViewHeight)
+			make.height.equalTo(UIConstants.imageViewSize)
+			make.width.equalTo(UIConstants.imageViewSize)
 		}
 	}
 }
