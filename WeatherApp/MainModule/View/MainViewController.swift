@@ -33,12 +33,13 @@ extension MainViewController: MainViewProtocol {
 private extension MainViewController {
 	func initialize() {
 		navigationItem.rightBarButtonItem = makeRightBarButtonItem()
+		tableView.backgroundColor = .clear
 		tableView.isScrollEnabled = false
 		tableView.dataSource = self
 		tableView.separatorColor = .clear
 		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
 		tableView.register(HourlyWeatherSetCell.self, forCellReuseIdentifier: String(describing: HourlyWeatherSetCell.self))
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "222")
+		tableView.register(WeaklyWeatherSetCell.self, forCellReuseIdentifier: String(describing: WeaklyWeatherSetCell.self))
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
@@ -85,8 +86,7 @@ extension MainViewController: UITableViewDataSource {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
 			return cell
 		} else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "222", for: indexPath)
-			cell.backgroundColor = .yellow
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeaklyWeatherSetCell.self), for: indexPath) as! WeaklyWeatherSetCell
 			return cell
 		}
 	}
