@@ -20,10 +20,10 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	
 	//MARK: - Private constants
 	private enum UIConstants {
-		static let timeLabelFontSize: CGFloat = 12
-		static let imageViewSize: CGFloat = 40
-		static let imageViewToTimeOffset: CGFloat = 10
-		static let temperatureLabelFontSize: CGFloat = 20
+		static let timeLabelFontSize: CGFloat             = 12
+		static let imageViewSize: CGFloat                 = 40
+		static let imageViewToTimeOffset: CGFloat         = 10
+		static let temperatureLabelFontSize: CGFloat      = 20
 		static let temperatureLabelToImageOffset: CGFloat = 5
 	}
 	

@@ -20,16 +20,16 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	//MARK: - Private constants
 	private enum UIConstants {
-		static let locationLabelFontSize: CGFloat = 32
-		static let todayLabelFontSize: CGFloat = 14
-		static let todayLabelToLocationOffset: CGFloat = 15
-		static let imageViewToTodayOffset: CGFloat = 20
-		static let imageViewWidth: CGFloat = 220
-		static let temperatureLabelFontSize: CGFloat = 72
-		static let temperatureLabelToImageOffset: CGFloat = 5
-		static let degreeLabelFontSize: CGFloat = 48
-		static let degreeLabelToTemperatureInset: CGFloat = -10
-		static let descriptionLabelFontSize: CGFloat = 16
+		static let locationLabelFontSize: CGFloat          = 32
+		static let todayLabelFontSize: CGFloat             = 14
+		static let todayLabelToLocationOffset: CGFloat     = 15
+		static let imageViewToTodayOffset: CGFloat         = 20
+		static let imageViewWidth: CGFloat                 = 220
+		static let temperatureLabelFontSize: CGFloat       = 72
+		static let temperatureLabelToImageOffset: CGFloat  = 5
+		static let degreeLabelFontSize: CGFloat            = 48
+		static let degreeLabelToTemperatureInset: CGFloat  = -10
+		static let descriptionLabelFontSize: CGFloat       = 16
 		static let descriptionLabelToDegreeOffset: CGFloat = 45
 	}
 	
