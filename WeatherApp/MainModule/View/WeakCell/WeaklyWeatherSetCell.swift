@@ -26,7 +26,7 @@ class WeaklyWeatherSetCell: UITableViewCell {
 	
 	//MARK: - Private Constants
 	private enum UIConstants {
-		static let collectionViewHeight: CGFloat = 180
+		static let collectionViewHeight: CGFloat = 220
 		static let cellWidth: CGFloat            = 120
 		static let cellHeight: CGFloat           = 180
 	}
@@ -42,12 +42,12 @@ private extension WeaklyWeatherSetCell {
 		backgroundColor = .clear
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
+		layout.minimumLineSpacing = 20
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		collectionView.showsHorizontalScrollIndicator = false
-		collectionView.isScrollEnabled = true
 		contentView.insertSubview(collectionView, at: 0)
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
@@ -67,8 +67,11 @@ extension WeaklyWeatherSetCell: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
-		cell.backgroundColor = .red
+		cell.backgroundColor = UIColor.BarColor
 		cell.layer.cornerRadius = 15
+		cell.layer.shadowOpacity = 0.15
+		cell.layer.shadowOffset = CGSize(width: 0, height: 2)
+		cell.layer.shadowRadius = 4.0
 		return cell
 	}
 }

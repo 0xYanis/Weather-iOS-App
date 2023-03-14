@@ -36,9 +36,9 @@ class HourlyWeatherSetCell: UITableViewCell {
 	private var collectionView: UICollectionView!
 	private let barView: UIView = {
 		let view = UIView()
-		view.backgroundColor = UIColor.HourlyBarColor
+		view.backgroundColor = UIColor.BarColor
 		view.layer.shadowColor = UIColor.black.cgColor
-		view.layer.shadowOpacity = 0.3
+		view.layer.shadowOpacity = 0.15
 		view.layer.shadowOffset = CGSize(width: 0, height: 2)
 		view.layer.shadowRadius = 4.0
 		view.layer.cornerRadius = 15

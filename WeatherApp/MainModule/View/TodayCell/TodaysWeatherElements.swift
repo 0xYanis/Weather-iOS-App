@@ -23,10 +23,10 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let locationLabelFontSize: CGFloat = 32
 		static let todayLabelFontSize: CGFloat = 14
 		static let todayLabelToLocationOffset: CGFloat = 15
-		static let imageViewToTodayOffset: CGFloat = 40
+		static let imageViewToTodayOffset: CGFloat = 20
 		static let imageViewWidth: CGFloat = 220
 		static let temperatureLabelFontSize: CGFloat = 72
-		static let temperatureLabelToImageOffset: CGFloat = 20
+		static let temperatureLabelToImageOffset: CGFloat = 5
 		static let degreeLabelFontSize: CGFloat = 48
 		static let degreeLabelToTemperatureInset: CGFloat = -10
 		static let descriptionLabelFontSize: CGFloat = 16
