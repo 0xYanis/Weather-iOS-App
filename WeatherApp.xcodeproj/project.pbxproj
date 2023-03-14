@@ -13,6 +13,7 @@
 		0981220629C0611800737D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0981220429C0611800737D51 /* LaunchScreen.storyboard */; };
 		0981223D29C0718900737D51 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981223C29C0718900737D51 /* Model.swift */; };
 		0981224229C0724000737D51 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981224129C0724000737D51 /* MainPresenter.swift */; };
+		0981224429C075DB00737D51 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981224329C075DB00737D51 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0981220729C0611800737D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0981223C29C0718900737D51 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0981224129C0724000737D51 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		0981224329C075DB00737D51 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +58,8 @@
 		098121F829C0611500737D51 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				0981223B29C06F9A00737D51 /* MainModule */,
 				0981220D29C0615300737D51 /* Application */,
+				0981223B29C06F9A00737D51 /* MainModule */,
 				0981220E29C0615E00737D51 /* Resources */,
 			);
 			path = WeatherApp;
@@ -85,9 +87,9 @@
 		0981223B29C06F9A00737D51 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				0981223E29C0721500737D51 /* Model */,
 				0981224029C0722600737D51 /* Presenter */,
 				0981223F29C0721C00737D51 /* View */,
-				0981223E29C0721500737D51 /* Model */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -103,6 +105,7 @@
 		0981223F29C0721C00737D51 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0981224329C075DB00737D51 /* MainViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				0981223D29C0718900737D51 /* Model.swift in Sources */,
 				098121FC29C0611500737D51 /* SceneDelegate.swift in Sources */,
 				0981224229C0724000737D51 /* MainPresenter.swift in Sources */,
+				0981224429C075DB00737D51 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
