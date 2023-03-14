@@ -24,7 +24,7 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let todayLabelFontSize: CGFloat = 14
 		static let todayLabelToLocationOffset: CGFloat = 15
 		static let imageViewToTodayOffset: CGFloat = 40
-		static let imageViewSize: CGFloat = 220
+		static let imageViewWidth: CGFloat = 220
 		static let temperatureLabelFontSize: CGFloat = 72
 		static let temperatureLabelToImageOffset: CGFloat = 20
 		static let degreeLabelFontSize: CGFloat = 48
@@ -109,7 +109,7 @@ private extension TodaysWeatherElements {
 		imageView.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
 			make.top.equalTo(todayLabel.snp.bottom).offset(UIConstants.imageViewToTodayOffset)
-			make.width.equalTo(UIConstants.imageViewSize)
+			make.width.equalTo(UIConstants.imageViewWidth)
 		}
 		contentView.addSubview(temperatureLabel)
 		temperatureLabel.snp.makeConstraints { make in
