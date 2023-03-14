@@ -50,6 +50,7 @@ class HourlyWeatherSetCell: UITableViewCell {
 private extension HourlyWeatherSetCell {
 	func initialize() {
 		backgroundColor = .clear
+		selectionStyle = .none
 		let layout = UICollectionViewFlowLayout()
 		layout.minimumInteritemSpacing = 0
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
