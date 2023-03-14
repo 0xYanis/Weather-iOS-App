@@ -33,6 +33,6 @@ extension MainViewController: MainViewProtocol {
 // MARK: Private methods
 private extension MainViewController {
 	func initialize() {
-		
+		view.backgroundColor = .red
 	}
 }
