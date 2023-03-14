@@ -9,6 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
 	
+	var presenter: MainPresenterProtocol!
+	
 	//MARK: VC lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
