@@ -26,14 +26,22 @@ class WeaklyWeatherSetCell: UITableViewCell {
 	
 	//MARK: - Private Constants
 	private enum UIConstants {
-		static let collectionViewHeight: CGFloat = 220
-		static let cellWidth: CGFloat            = 120
-		static let cellHeight: CGFloat           = 180
+		static let collectionViewHeight: CGFloat  = 220
+		static let cellWidth: CGFloat             = 120
+		static let cellHeight: CGFloat            = 180
+		static let forecastLabelFontSize: CGFloat = 18
+		static let forecastLabelInset: CGFloat    = 16
 	}
 	
 	// MARK: - Private properties
+	private let forecastLabel: UILabel = {
+		let label = UILabel()
+		label.font = UIFont(name: "Helvetica", size: UIConstants.forecastLabelFontSize)
+		label.text = "7 days forecast"
+		label.textColor = .white
+		return label
+	}()
 	private var collectionView: UICollectionView!
-	
 }
 
 // MARK: - Private methods
@@ -53,9 +61,14 @@ private extension WeaklyWeatherSetCell {
 			make.edges.equalToSuperview()
 			make.height.equalTo(UIConstants.collectionViewHeight)
 		}
+		contentView.insertSubview(forecastLabel, at: 0)
+		forecastLabel.snp.makeConstraints { make in
+			make.top.equalToSuperview()
+			make.leading.equalToSuperview().inset(UIConstants.forecastLabelInset)
+		}
 		// MARK: - DELETE BACKGROUND COLOR
 		collectionView.backgroundColor = nil
-		collectionView.contentInset = .init(top: 10, left: 16, bottom: 0, right: 16)
+		collectionView.contentInset = .init(top: 20, left: 16, bottom: 0, right: 16)
 	}
 }
 
