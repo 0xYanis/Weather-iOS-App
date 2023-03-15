@@ -78,11 +78,6 @@ extension WeaklyWeatherSetCell: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WeaklyWeatherBarElements.self), for: indexPath) as! WeaklyWeatherBarElements
-		cell.backgroundColor = UIColor.BarColor
-		cell.layer.cornerRadius = 15
-		cell.layer.shadowOpacity = 0.15
-		cell.layer.shadowOffset = CGSize(width: 0, height: 2)
-		cell.layer.shadowRadius = 4.0
 		return cell
 	}
 }

@@ -61,6 +61,11 @@ class WeaklyWeatherBarElements: UICollectionViewCell {
 // MARK: - Private methods
 private extension WeaklyWeatherBarElements {
 	func initialize() {
+		backgroundColor = UIColor.BarColor
+		layer.cornerRadius = 15
+		layer.shadowOpacity = 0.15
+		layer.shadowOffset = CGSize(width: 0, height: 2)
+		layer.shadowRadius = 4.0
 		contentView.addSubview(dayLabel)
 		dayLabel.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
