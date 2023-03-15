@@ -52,7 +52,7 @@ private extension WeaklyWeatherSetCell {
 		layout.scrollDirection = .horizontal
 		layout.minimumLineSpacing = 20
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
+		collectionView.register(WeaklyWeatherBarElements.self, forCellWithReuseIdentifier: String(describing: WeaklyWeatherBarElements.self))
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		collectionView.showsHorizontalScrollIndicator = false
@@ -79,7 +79,7 @@ extension WeaklyWeatherSetCell: UICollectionViewDataSource {
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WeaklyWeatherBarElements.self), for: indexPath) as! WeaklyWeatherBarElements
 		cell.backgroundColor = UIColor.BarColor
 		cell.layer.cornerRadius = 15
 		cell.layer.shadowOpacity = 0.15
