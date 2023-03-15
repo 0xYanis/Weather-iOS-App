@@ -62,15 +62,21 @@ private extension MainViewController {
 	
 	
 	func makeRightBarButtonItem() -> UIBarButtonItem {
-		let addBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"),
-											   style: .plain,
-											   target: self,
-											   action: #selector(didTapPlusButton))
+		let addBarButtonItem = UIBarButtonItem(title: nil,
+											  image: UIImage(systemName: "plus.circle.fill"),
+											  target: self,
+											  action: nil,
+											  menu: makeDropDownMenu())
 		addBarButtonItem.tintColor = .white
 		return addBarButtonItem
 	}
 	
-	@objc func didTapPlusButton() { }
+	func makeDropDownMenu() -> UIMenu {
+		let newLocItem = UIAction(title: "New location", image: UIImage(systemName: "mappin.and.ellipse")) { _ in
+			
+		}
+		return UIMenu(children: [newLocItem])
+	}
 }
 
 // MARK: - UITableViewDataSource
