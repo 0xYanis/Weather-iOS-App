@@ -59,7 +59,7 @@ private extension MainViewController {
 		gradientView.layer.insertSublayer(gradientLayer, at: 0)
 		return gradientView
 	}
-
+	
 	
 	func makeRightBarButtonItem() -> UIBarButtonItem {
 		let addBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"),
@@ -96,14 +96,18 @@ extension MainViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		let screenHeight = UIScreen.main.bounds.height
-		let tableHeight = screenHeight - view.safeAreaInsets.top - view.safeAreaInsets.bottom
-		if indexPath.row == 0 {
-			return tableHeight/1.89
-		} else if indexPath.row == 1 {
-			return tableHeight/5.6
-		} else {
-			return tableHeight/3.27
+		switch indexPath.row {
+		case 0:
+			return self.calculateHeight(multiplier: 1.89)
+		case 1:
+			return self.calculateHeight(multiplier: 5.6)
+		default:
+			return self.calculateHeight(multiplier: 3.27)
 		}
+	}
+	private func calculateHeight(multiplier: CGFloat) -> CGFloat {
+		let screenHeight = UIScreen.main.bounds.height
+		let tableСellHeight = screenHeight - view.safeAreaInsets.top - view.safeAreaInsets.bottom
+		return tableСellHeight / multiplier
 	}
 }
