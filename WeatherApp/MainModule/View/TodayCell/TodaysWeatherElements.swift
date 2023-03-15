@@ -118,7 +118,9 @@ private extension TodaysWeatherElements {
 		}
 		contentView.addSubview(degreeLabel)
 		degreeLabel.snp.makeConstraints { make in
-			make.trailing.top.equalTo(temperatureLabel).inset(UIConstants.degreeLabelToTemperatureInset)
+			//make.trailing.top.equalTo(temperatureLabel).inset(UIConstants.degreeLabelToTemperatureInset)
+			make.top.equalTo(temperatureLabel.snp.top).inset(5)
+			make.trailing.equalTo(temperatureLabel.snp.trailing).offset(17)
 		}
 		contentView.addSubview(descriptionLabel)
 		descriptionLabel.snp.makeConstraints { make in
