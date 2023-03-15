@@ -43,9 +43,12 @@ class TodaysWeatherElements: UICollectionViewCell {
 	}()
 	
 	private let todayLabel: UILabel = {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "d MMM"
+		let dateStr = dateFormatter.string(from: .now)
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.todayLabelFontSize)
-		label.text = "Today, 7 Sep"
+		label.text = "Today, " + dateStr
 		label.textColor = .systemGray6
 		return label
 	}()

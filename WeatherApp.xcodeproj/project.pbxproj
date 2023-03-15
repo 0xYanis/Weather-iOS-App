@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		097C169F29C1D1C000320138 /* WeaklyWeatherBarElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097C169E29C1D1C000320138 /* WeaklyWeatherBarElements.swift */; };
+		097C16A529C218DF00320138 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097C16A429C218DF00320138 /* NetworkService.swift */; };
 		098121FA29C0611500737D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098121F929C0611500737D51 /* AppDelegate.swift */; };
 		098121FC29C0611500737D51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098121FB29C0611500737D51 /* SceneDelegate.swift */; };
 		0981220329C0611800737D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0981220229C0611800737D51 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		097C169E29C1D1C000320138 /* WeaklyWeatherBarElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaklyWeatherBarElements.swift; sourceTree = "<group>"; };
+		097C16A429C218DF00320138 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		098121F629C0611500737D51 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		098121F929C0611500737D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		098121FB29C0611500737D51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				09D45D3E29C07E3700B88DA9 /* Extensions */,
 				0981223B29C06F9A00737D51 /* MainModule */,
 				0981220E29C0615E00737D51 /* Resources */,
+				097C16A429C218DF00320138 /* NetworkService.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				098121FC29C0611500737D51 /* SceneDelegate.swift in Sources */,
 				0981224229C0724000737D51 /* MainPresenter.swift in Sources */,
 				09D45D4E29C0E51100B88DA9 /* HourlyWeatherBarElements.swift in Sources */,
+				097C16A529C218DF00320138 /* NetworkService.swift in Sources */,
 				0981224429C075DB00737D51 /* MainViewController.swift in Sources */,
 				097C169F29C1D1C000320138 /* WeaklyWeatherBarElements.swift in Sources */,
 				0981224629C0784A00737D51 /* ModuleBuilder.swift in Sources */,
