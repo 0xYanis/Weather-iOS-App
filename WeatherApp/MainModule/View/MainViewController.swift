@@ -60,7 +60,6 @@ private extension MainViewController {
 		return gradientView
 	}
 	
-	
 	func makeRightBarButtonItem() -> UIBarButtonItem {
 		let addBarButtonItem = UIBarButtonItem(title: nil,
 											  image: UIImage(systemName: "plus.circle.fill"),
@@ -72,7 +71,7 @@ private extension MainViewController {
 	}
 	
 	func makeDropDownMenu() -> UIMenu {
-		let newLocItem = UIAction(title: "New location", image: UIImage(systemName: "mappin.and.ellipse")) { _ in
+		let newLocItem = UIAction(title: "Set new location?", image: UIImage(systemName: "mappin.and.ellipse")) { _ in
 			
 		}
 		return UIMenu(children: [newLocItem])
