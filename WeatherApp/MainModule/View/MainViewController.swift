@@ -24,9 +24,15 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewProtocol {
-	func setLocation(location: String) { }
+	func succes() {
+		tableView.reloadData()
+	}
 	
-	func setAnotherForecast(dayNumber: Int) { }
+	func failure(error: Error) {
+		print(error.localizedDescription)
+	}
+	
+	
 }
 
 // MARK: Private methods

@@ -9,30 +9,41 @@ import Foundation
 
 // MARK: OUTPUT Protocol
 protocol MainViewProtocol: AnyObject {
-	func setLocation(location: String)
-	func setAnotherForecast(dayNumber: Int)
+	func succes()
+	func failure(error: Error)
 }
 
 // MARK: INPUT Protocol
 protocol MainPresenterProtocol: AnyObject {
-	init(view: MainViewProtocol, model: Model)
-	func changeLocation()
-	func showForecast()
+	init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
+	func getForecast()
+	var weather: [Weather]? { get set }
 }
 
 class MainPresenter: MainPresenterProtocol {
 	
-	let view: MainViewProtocol
-	let model: Model
+	var weather: [Weather]?
+	weak var view: MainViewProtocol?
+	let networkService: NetworkServiceProtocol!
 	
-	required init(view: MainViewProtocol, model: Model) {
+	required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
 		self.view = view
-		self.model = model
+		self.networkService = networkService
+		getForecast()
 	}
 	
-	func changeLocation() { }
-	
-	func showForecast() { }
-	
-	
+	func getForecast() {
+		networkService.getForecast { [weak self] result in
+			guard let self = self else { return }
+			DispatchQueue.main.async {
+				switch result {
+				case .success(let weather):
+					self.weather = weather
+					self.view?.succes()
+				case .failure(let error):
+					self.view?.failure(error: error)
+				}
+			}
+		}
+	}
 }

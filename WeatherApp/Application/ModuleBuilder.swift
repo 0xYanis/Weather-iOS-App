@@ -13,9 +13,9 @@ protocol Builder {
 
 class ModuleBuilder: Builder {
 	static func createMainModule() -> UIViewController {
-		let model = Model(lat: 1.0, lon: 2.0, timezone: "USA", timezoneOffset: -10, current: nil)
 		let view = MainViewController()
-		let presenter = MainPresenter(view: view, model: model)
+		let networkService = NetworkService()
+		let presenter = MainPresenter(view: view, networkService: networkService)
 		view.presenter = presenter
 		return view
 	}
