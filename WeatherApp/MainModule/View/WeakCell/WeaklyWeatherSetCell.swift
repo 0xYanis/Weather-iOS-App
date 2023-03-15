@@ -26,7 +26,6 @@ class WeaklyWeatherSetCell: UITableViewCell {
 	
 	//MARK: - Private Constants
 	private enum UIConstants {
-		static let collectionViewHeight: CGFloat  = 220
 		static let cellWidth: CGFloat             = 120
 		static let cellHeight: CGFloat            = 180
 		static let forecastLabelFontSize: CGFloat = 18
@@ -59,7 +58,6 @@ private extension WeaklyWeatherSetCell {
 		contentView.insertSubview(collectionView, at: 0)
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
-			make.height.equalTo(UIConstants.collectionViewHeight)
 		}
 		contentView.insertSubview(forecastLabel, at: 0)
 		forecastLabel.snp.makeConstraints { make in

@@ -24,11 +24,6 @@ class TodaysWeatherSetCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: - Private Constants
-	private enum UIConstants {
-		static let collectionViewHeight: CGFloat = 380
-	}
-	
 	// MARK: - Private properties
 	private var collectionView: UICollectionView!
 }
@@ -45,7 +40,6 @@ private extension TodaysWeatherSetCell {
 		contentView.addSubview(collectionView)
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
-			make.height.equalTo(UIConstants.collectionViewHeight)
 		}
 		// MARK: - DELETE BACKGROUND COLOR
 		collectionView.backgroundColor = nil

@@ -36,6 +36,7 @@ private extension MainViewController {
 		tableView.backgroundColor = .clear
 		tableView.isScrollEnabled = false
 		tableView.dataSource = self
+		tableView.delegate = self
 		tableView.separatorColor = .clear
 		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
 		tableView.register(HourlyWeatherSetCell.self, forCellReuseIdentifier: String(describing: HourlyWeatherSetCell.self))
@@ -88,6 +89,21 @@ extension MainViewController: UITableViewDataSource {
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeaklyWeatherSetCell.self), for: indexPath) as! WeaklyWeatherSetCell
 			return cell
+		}
+	}
+}
+
+//MARK: - UITableViewDelegate
+extension MainViewController: UITableViewDelegate {
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		let screenHeight = UIScreen.main.bounds.height
+		let tableHeight = screenHeight - view.safeAreaInsets.top - view.safeAreaInsets.bottom
+		if indexPath.row == 0 {
+			return tableHeight/1.89
+		} else if indexPath.row == 1 {
+			return tableHeight/5.6
+		} else {
+			return tableHeight/3.27
 		}
 	}
 }

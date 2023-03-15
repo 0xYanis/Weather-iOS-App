@@ -26,7 +26,6 @@ class HourlyWeatherSetCell: UITableViewCell {
 	
 	//MARK: - Private Constants
 	private enum UIConstants {
-		static let collectionViewHeight: CGFloat    = 120
 		static let cellWidth: CGFloat               = 55
 		static let cellHeight: CGFloat              = 100
 		static let barViewToTableViewInset: CGFloat = 16
@@ -65,7 +64,6 @@ private extension HourlyWeatherSetCell {
 		contentView.addSubview(collectionView)
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalTo(barView.snp.edges)
-			make.height.equalTo(UIConstants.collectionViewHeight)
 		}
 		// MARK: - DELETE BACKGROUND COLOR
 		collectionView.backgroundColor = nil
