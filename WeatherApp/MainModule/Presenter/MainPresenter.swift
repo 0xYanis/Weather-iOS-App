@@ -77,12 +77,14 @@ class MainPresenter: MainPresenterProtocol {
 	
 	func getDateArray() -> [String] {
 		
+		var datesArray = [String]()
+		
 		let formatter = DateFormatter()
 		formatter.dateFormat = "d MMM"
 		formatter.locale = Locale(identifier: "en_US")
-		var datesArray = [String]()
+		datesArray.append("Today")
 		
-		for i in 0...6 {
+		for i in 1...6 {
 			let date = Calendar.current.date(byAdding: .day, value: i, to: Date())!
 			let dateString = formatter.string(from: date)
 			datesArray.append(dateString)
