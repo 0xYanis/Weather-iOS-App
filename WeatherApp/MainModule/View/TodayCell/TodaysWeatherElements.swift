@@ -37,7 +37,7 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let temperatureLabelToImageOffset: CGFloat  = 5
 		static let degreeLabelFontSize: CGFloat            = 48
 		static let descriptionLabelFontSize: CGFloat       = 16
-		static let descriptionLabelToTempOffset: CGFloat = 10
+		static let descriptionLabelToTempOffset: CGFloat   = 10
 	}
 	
 	// MARK: - Private properties
