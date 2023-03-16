@@ -29,7 +29,7 @@ extension MainViewController: MainViewProtocol {
 	}
 	
 	func failure(error: Error) {
-		print(error.localizedDescription)
+		alert(message: error.localizedDescription)
 	}
 }
 
@@ -51,6 +51,14 @@ private extension MainViewController {
 		}
 		tableView.backgroundView = backgroundGradient(view.bounds, UIColor.topGradientColor, UIColor.BottomGradientColor)
 	}
+	func alert(message: String) {
+		let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+		let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+		alertController.addAction(okAction)
+		present(alertController, animated: true, completion: nil)
+	}
+	
+	
 	
 	func backgroundGradient(_ bounds: CGRect,_ topColor: UIColor,_ bottomColor: UIColor) -> UIView {
 		let gradientLayer = CAGradientLayer()
@@ -66,10 +74,10 @@ private extension MainViewController {
 	
 	func makeRightBarButtonItem() -> UIBarButtonItem {
 		let addBarButtonItem = UIBarButtonItem(title: nil,
-											  image: UIImage(systemName: "plus.circle.fill"),
-											  target: self,
-											  action: nil,
-											  menu: makeDropDownMenu())
+											   image: UIImage(systemName: "plus.circle.fill"),
+											   target: self,
+											   action: nil,
+											   menu: makeDropDownMenu())
 		addBarButtonItem.tintColor = .white
 		return addBarButtonItem
 	}

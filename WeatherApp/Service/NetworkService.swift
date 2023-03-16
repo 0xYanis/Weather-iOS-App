@@ -22,7 +22,6 @@ class NetworkService: NetworkServiceProtocol {
 		let headers: HTTPHeaders = ["X-Yandex-API-Key": "c64016b4-04d5-41ce-9816-2b54a6229173"]
 
 		AF.request(url, headers: headers).responseDecodable(of: Weather.self) { response in
-			print(response)
 			switch response.result {
 			case .success(let objects):
 				completion(.success(objects))

@@ -8,9 +8,9 @@
 import Foundation
 
 struct Weather: Decodable {
-	let geoObject: GeoObject?
-	let fact: Fact?
-	let forecasts: [Forecast]?
+	let geoObject: GeoObject
+	let fact: Fact
+	let forecasts: [Forecast]
 	
 	enum CodingKeys: String, CodingKey {
 		case geoObject = "geo_object"
