@@ -9,10 +9,10 @@ import UIKit
 
 class WeeklyWeatherBarElements: UICollectionViewCell {
 	
-	func configure(with dayWeather: Day, date: String) {
+	func configure(with dayWeather: Forecast, date: String) {
 		dayLabel.text = date
-		imageView.image = UIImage(named: dayWeather.condition?.rawValue ?? "")
-		temperatureLabel.text = String(describing: dayWeather.feelsLike ?? 0)
+		imageView.image = UIImage(named: dayWeather.parts?.day?.condition?.rawValue ?? "")
+		temperatureLabel.text = String(describing: dayWeather.parts?.day?.feelsLike ?? 0)
 	}
 	
 	override init(frame: CGRect) {

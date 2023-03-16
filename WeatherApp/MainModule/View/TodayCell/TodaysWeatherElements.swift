@@ -10,8 +10,9 @@ import UIKit
 class TodaysWeatherElements: UICollectionViewCell {
 	
 	//MARK: - Public
-	func configure(with todaysWeather: Weather) {
+	func configure(with todaysWeather: Weather, today: String) {
 		locationLabel.text = todaysWeather.geoObject.locality?.name
+		todayLabel.text = today
 		imageView.image = UIImage(named: todaysWeather.fact.condition?.rawValue ?? "")
 		temperatureLabel.text = String(describing: todaysWeather.fact.temp ?? 0)
 		descriptionLabel.text = todaysWeather.fact.condition?.rawValue
@@ -48,15 +49,10 @@ class TodaysWeatherElements: UICollectionViewCell {
 		label.textColor = .white
 		return label
 	}()
-	
+	//
 	private let todayLabel: UILabel = {
-		let dateFormatter = DateFormatter()
-		dateFormatter.locale = Locale(identifier: "en_US")
-		dateFormatter.dateFormat = "d MMM"
-		let dateStr = dateFormatter.string(from: .now)
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.todayLabelFontSize)
-		label.text = "Today, " + dateStr
 		label.textColor = .systemGray6
 		return label
 	}()

@@ -103,11 +103,12 @@ extension MainViewController: UITableViewDataSource {
 			return tableViewCell
 		}
 		let forecast = weather.forecasts[indexPath.row]
+		let todayString = presenter.todayString ?? ""
 		let timeArray = presenter.timeArray ?? []
 		let dateArray = presenter.dateArray ?? []
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
-			cell.configure(with: weather)
+			cell.configure(with: weather, today: todayString)
 			return cell
 		} else if indexPath.row == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
@@ -115,7 +116,7 @@ extension MainViewController: UITableViewDataSource {
 			return cell
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeeklyWeatherSetCell.self), for: indexPath) as! WeeklyWeatherSetCell
-			cell.configure(with: forecast.parts!, dateArray: dateArray)
+			cell.configure(with: weather.forecasts, dateArray: dateArray)
 			return cell
 		}
 	}

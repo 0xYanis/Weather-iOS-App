@@ -10,7 +10,7 @@ import UIKit
 class WeeklyWeatherSetCell: UITableViewCell {
 	
 	// MARK: - Public
-	func configure(with weeksWeather: Parts, dateArray: [String]) {
+	func configure(with weeksWeather: [Forecast], dateArray: [String]) {
 		self.weeksWeather = weeksWeather
 		self.dateArray = dateArray
 	}
@@ -42,7 +42,7 @@ class WeeklyWeatherSetCell: UITableViewCell {
 		return label
 	}()
 	private var collectionView: UICollectionView!
-	private var weeksWeather: Parts!
+	private var weeksWeather: [Forecast]!
 	private var dateArray: [String] = []
 }
 
@@ -81,7 +81,7 @@ extension WeeklyWeatherSetCell: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WeeklyWeatherBarElements.self), for: indexPath) as! WeeklyWeatherBarElements
-		cell.configure(with: weeksWeather.day!, date: dateArray[indexPath.row])
+		cell.configure(with: weeksWeather[indexPath.row], date: dateArray[indexPath.row])
 		return cell
 	}
 }

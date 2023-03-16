@@ -18,11 +18,13 @@ protocol MainPresenterProtocol: AnyObject {
 	
 	init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
 	
+	var todayString: String? { get set }
 	var timeArray: [String]? { get set }
 	var dateArray: [String]? { get set }
-	var weather: Weather? { get set }
+	var weather: Weather?    { get set }
 	
 	func getForecast()
+	func getTodayString() -> String
 	func getTimeArray() -> [String]
 	func getDateArray() -> [String]
 }
@@ -30,6 +32,7 @@ protocol MainPresenterProtocol: AnyObject {
 class MainPresenter: MainPresenterProtocol {
 	
 	var weather: Weather?
+	var todayString: String?
 	var timeArray: [String]?
 	var dateArray: [String]?
 	
@@ -42,15 +45,24 @@ class MainPresenter: MainPresenterProtocol {
 		getForecast()
 	}
 	
+	func getTodayString() -> String {
+		let dateFormatter = DateFormatter()
+		dateFormatter.locale = Locale(identifier: "en_US")
+		dateFormatter.dateFormat = "d MMM"
+		let dateStr = "Today, " + dateFormatter.string(from: .now)
+		return dateStr
+	}
+	
 	func getForecast() {
 		networkService.getForecast { [weak self] result in
 			guard let self = self else { return }
 			DispatchQueue.main.async {
 				switch result {
 				case .success(let weather):
-					self.weather = weather
-					self.timeArray = self.getTimeArray()
-					self.dateArray = self.getDateArray()
+					self.weather     = weather
+					self.todayString = self.getTodayString()
+					self.timeArray   = self.getTimeArray()
+					self.dateArray   = self.getDateArray()
 					self.view?.succes()
 				case .failure(let error):
 					self.view?.failure(error: error)
