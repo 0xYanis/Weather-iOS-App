@@ -31,8 +31,6 @@ extension MainViewController: MainViewProtocol {
 	func failure(error: Error) {
 		print(error.localizedDescription)
 	}
-	
-	
 }
 
 // MARK: Private methods

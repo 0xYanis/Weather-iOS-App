@@ -17,12 +17,12 @@ protocol MainViewProtocol: AnyObject {
 protocol MainPresenterProtocol: AnyObject {
 	init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
 	func getForecast()
-	var weather: [Weather]? { get set }
+	var weather: Weather? { get set }
 }
 
 class MainPresenter: MainPresenterProtocol {
 	
-	var weather: [Weather]?
+	var weather: Weather?
 	weak var view: MainViewProtocol?
 	let networkService: NetworkServiceProtocol!
 	
