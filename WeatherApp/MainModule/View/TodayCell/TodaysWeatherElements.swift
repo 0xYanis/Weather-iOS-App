@@ -37,7 +37,7 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let temperatureLabelToImageOffset: CGFloat  = 5
 		static let degreeLabelFontSize: CGFloat            = 48
 		static let descriptionLabelFontSize: CGFloat       = 16
-		static let descriptionLabelToDegreeOffset: CGFloat = 45
+		static let descriptionLabelToTempOffset: CGFloat = 10
 	}
 	
 	// MARK: - Private properties
@@ -133,7 +133,7 @@ private extension TodaysWeatherElements {
 		contentView.addSubview(descriptionLabel)
 		descriptionLabel.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
-			make.top.equalTo(degreeLabel.snp.bottom).offset(UIConstants.descriptionLabelToDegreeOffset)
+			make.top.equalTo(temperatureLabel.snp.bottom).offset(UIConstants.descriptionLabelToTempOffset)
 		}
 	}
 }
