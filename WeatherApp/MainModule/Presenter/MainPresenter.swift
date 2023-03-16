@@ -15,17 +15,24 @@ protocol MainViewProtocol: AnyObject {
 
 // MARK: INPUT Protocol
 protocol MainPresenterProtocol: AnyObject {
+	
 	init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
+	
+	var timeArray: [String]? { get set }
+	var dateArray: [String]? { get set }
+	var weather: Weather? { get set }
+	
 	func getForecast()
 	func getTimeArray() -> [String]
-	var timeArray: [String]? { get set }
-	var weather: Weather? { get set }
+	func getDateArray() -> [String]
 }
 
 class MainPresenter: MainPresenterProtocol {
 	
 	var weather: Weather?
 	var timeArray: [String]?
+	var dateArray: [String]?
+	
 	weak var view: MainViewProtocol?
 	let networkService: NetworkServiceProtocol!
 	
@@ -43,6 +50,7 @@ class MainPresenter: MainPresenterProtocol {
 				case .success(let weather):
 					self.weather = weather
 					self.timeArray = self.getTimeArray()
+					self.dateArray = self.getDateArray()
 					self.view?.succes()
 				case .failure(let error):
 					self.view?.failure(error: error)
@@ -66,4 +74,21 @@ class MainPresenter: MainPresenterProtocol {
 		}
 		return timeArray
 	}
+	
+	func getDateArray() -> [String] {
+		
+		let formatter = DateFormatter()
+		formatter.dateFormat = "d MMM"
+		formatter.locale = Locale(identifier: "en_US")
+		var datesArray = [String]()
+		
+		for i in 0...6 {
+			let date = Calendar.current.date(byAdding: .day, value: i, to: Date())!
+			let dateString = formatter.string(from: date)
+			datesArray.append(dateString)
+		}
+		
+		return datesArray
+	}
+
 }

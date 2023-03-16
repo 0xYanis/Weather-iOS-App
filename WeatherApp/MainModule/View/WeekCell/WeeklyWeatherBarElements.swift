@@ -9,6 +9,12 @@ import UIKit
 
 class WeeklyWeatherBarElements: UICollectionViewCell {
 	
+	func configure(with dayWeather: Day, date: String) {
+		dayLabel.text = date
+		imageView.image = UIImage(named: dayWeather.condition?.rawValue ?? "")
+		temperatureLabel.text = String(describing: dayWeather.feelsLike ?? 0)
+	}
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initialize()
@@ -32,14 +38,12 @@ class WeeklyWeatherBarElements: UICollectionViewCell {
 	private let dayLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica", size: UIConstants.dayLabelFontSize)
-		label.text = "8 Sep"
 		label.textColor = .white
 		return label
 	}()
 	
 	private let imageView: UIImageView = {
 		let view = UIImageView()
-		view.image = UIImage(named: "rainycloud")
 		view.contentMode = .scaleAspectFill
 		return view
 	}()
@@ -47,7 +51,6 @@ class WeeklyWeatherBarElements: UICollectionViewCell {
 	private let temperatureLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
-		label.text = "12" + "\u{00B0}"
 		label.textColor = .white
 		label.layer.shadowColor = UIColor.black.cgColor
 		label.layer.shadowOffset = CGSize(width: 0, height: 3)
