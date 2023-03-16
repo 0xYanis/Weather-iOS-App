@@ -9,6 +9,12 @@ import UIKit
 
 class HourlyWeatherBarElements: UICollectionViewCell {
 	
+	func configure(with hourlyWeather: Hour, timeArray: String) {
+		timeLabel.text = timeArray
+		imageView.image = UIImage(named: hourlyWeather.condition?.rawValue ?? "")
+		temperatureLabel.text = String(describing: hourlyWeather.feelsLike ?? 0)
+	}
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initialize()

@@ -102,15 +102,19 @@ extension MainViewController: UITableViewDataSource {
 			tableViewCell.backgroundColor = .clear
 			return tableViewCell
 		}
+		let forecast = weather.forecasts[indexPath.row]
+		let timeArray = presenter.timeArray ?? []
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
 			cell.configure(with: weather)
 			return cell
 		} else if indexPath.row == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
+			cell.configure(with: forecast.hours ?? [], timeArray: timeArray)
 			return cell
 		} else {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeaklyWeatherSetCell.self), for: indexPath) as! WeaklyWeatherSetCell
+			//cell.configure(with: forecast.parts)
 			return cell
 		}
 	}

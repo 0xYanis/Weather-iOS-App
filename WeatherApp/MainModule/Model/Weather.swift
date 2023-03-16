@@ -73,12 +73,14 @@ struct Forecast: Decodable {
 }
 
 struct Hour: Decodable {
+	let hour: String?
 	let temp: Int?
 	let feelsLike: Int?
 	let condition: Condition?
 	let icon: Icon?
 	
 	enum CodingKeys: String, CodingKey {
+		case hour
 		case temp
 		case feelsLike = "feels_like"
 		case icon

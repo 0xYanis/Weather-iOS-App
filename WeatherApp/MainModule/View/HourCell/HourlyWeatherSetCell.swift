@@ -10,8 +10,9 @@ import UIKit
 class HourlyWeatherSetCell: UITableViewCell {
 	
 	// MARK: - Public
-	func configure() {
-		
+	func configure(with todaysWeather: [Hour], timeArray: [String]) {
+		self.hourlyWeather = todaysWeather
+		self.timeArray = timeArray
 	}
 	
 	// MARK: - Init
@@ -33,6 +34,8 @@ class HourlyWeatherSetCell: UITableViewCell {
 	
 	// MARK: - Private properties
 	private var collectionView: UICollectionView!
+	private var hourlyWeather: [Hour] = []
+	private var timeArray: [String] = []
 	private let barView: UIView = {
 		let view = UIView()
 		view.backgroundColor = UIColor.BarColor
@@ -79,6 +82,8 @@ extension HourlyWeatherSetCell: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HourlyWeatherBarElements.self), for: indexPath) as! HourlyWeatherBarElements
+		let hours = hourlyWeather[indexPath.row]
+		cell.configure(with: hours, timeArray: timeArray[indexPath.row])
 		return cell
 	}
 }
