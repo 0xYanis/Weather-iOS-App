@@ -1,5 +1,5 @@
 //
-//  WeaklyWeatherSetCell.swift
+//  WeeklyWeatherSetCell.swift
 //  WeatherApp
 //
 //  Created by Yan Rybkin on 14.03.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeaklyWeatherSetCell: UITableViewCell {
+class WeeklyWeatherSetCell: UITableViewCell {
 	
 	// MARK: - Public
 	func configure() {
@@ -44,14 +44,14 @@ class WeaklyWeatherSetCell: UITableViewCell {
 }
 
 // MARK: - Private methods
-private extension WeaklyWeatherSetCell {
+private extension WeeklyWeatherSetCell {
 	func initialize() {
 		backgroundColor = .clear
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
 		layout.minimumLineSpacing = 20
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		collectionView.register(WeaklyWeatherBarElements.self, forCellWithReuseIdentifier: String(describing: WeaklyWeatherBarElements.self))
+		collectionView.register(WeeklyWeatherBarElements.self, forCellWithReuseIdentifier: String(describing: WeeklyWeatherBarElements.self))
 		collectionView.dataSource = self
 		collectionView.delegate = self
 		collectionView.showsHorizontalScrollIndicator = false
@@ -71,19 +71,19 @@ private extension WeaklyWeatherSetCell {
 }
 
 // MARK: - UICollectionViewDataSource
-extension WeaklyWeatherSetCell: UICollectionViewDataSource {
+extension WeeklyWeatherSetCell: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 7
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WeaklyWeatherBarElements.self), for: indexPath) as! WeaklyWeatherBarElements
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: WeeklyWeatherBarElements.self), for: indexPath) as! WeeklyWeatherBarElements
 		return cell
 	}
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension WeaklyWeatherSetCell: UICollectionViewDelegateFlowLayout {
+extension WeeklyWeatherSetCell: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		CGSize(width: UIConstants.cellWidth, height: UIConstants.cellHeight)
 	}

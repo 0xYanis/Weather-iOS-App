@@ -1,5 +1,5 @@
 //
-//  WeaklyWeatherBarElements.swift
+//  WeeklyWeatherBarElements.swift
 //  WeatherApp
 //
 //  Created by Yan Rybkin on 15.03.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeaklyWeatherBarElements: UICollectionViewCell {
+class WeeklyWeatherBarElements: UICollectionViewCell {
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -59,7 +59,7 @@ class WeaklyWeatherBarElements: UICollectionViewCell {
 }
 
 // MARK: - Private methods
-private extension WeaklyWeatherBarElements {
+private extension WeeklyWeatherBarElements {
 	func initialize() {
 		backgroundColor = UIColor.BarColor
 		layer.cornerRadius = 15

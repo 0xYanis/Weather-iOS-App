@@ -44,7 +44,7 @@ private extension MainViewController {
 		tableView.separatorColor = .clear
 		tableView.register(TodaysWeatherSetCell.self, forCellReuseIdentifier: String(describing: TodaysWeatherSetCell.self))
 		tableView.register(HourlyWeatherSetCell.self, forCellReuseIdentifier: String(describing: HourlyWeatherSetCell.self))
-		tableView.register(WeaklyWeatherSetCell.self, forCellReuseIdentifier: String(describing: WeaklyWeatherSetCell.self))
+		tableView.register(WeeklyWeatherSetCell.self, forCellReuseIdentifier: String(describing: WeeklyWeatherSetCell.self))
 		view.addSubview(tableView)
 		tableView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
@@ -113,7 +113,7 @@ extension MainViewController: UITableViewDataSource {
 			cell.configure(with: forecast.hours ?? [], timeArray: timeArray)
 			return cell
 		} else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeaklyWeatherSetCell.self), for: indexPath) as! WeaklyWeatherSetCell
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeeklyWeatherSetCell.self), for: indexPath) as! WeeklyWeatherSetCell
 			//cell.configure(with: forecast.parts)
 			return cell
 		}
