@@ -19,6 +19,8 @@
 		0981224429C075DB00737D51 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981224329C075DB00737D51 /* MainViewController.swift */; };
 		0981224629C0784A00737D51 /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0981224529C0784A00737D51 /* ModuleBuilder.swift */; };
 		09B75B2B29C3498E00200631 /* WeatherPresentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B2A29C3498E00200631 /* WeatherPresentModel.swift */; };
+		09B75B2D29C380D300200631 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B2C29C380D300200631 /* LocationService.swift */; };
+		09B75B3129C3D47800200631 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B3029C3D47800200631 /* MainService.swift */; };
 		09D45D4029C07E4400B88DA9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D3F29C07E4400B88DA9 /* Extensions.swift */; };
 		09D45D4229C0842B00B88DA9 /* TodaysWeatherSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D4129C0842B00B88DA9 /* TodaysWeatherSetCell.swift */; };
 		09D45D4529C0852800B88DA9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 09D45D4429C0852800B88DA9 /* SnapKit */; };
@@ -42,6 +44,8 @@
 		0981224329C075DB00737D51 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0981224529C0784A00737D51 /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		09B75B2A29C3498E00200631 /* WeatherPresentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresentModel.swift; sourceTree = "<group>"; };
+		09B75B2C29C380D300200631 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		09B75B3029C3D47800200631 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		09D45D3F29C07E4400B88DA9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		09D45D4129C0842B00B88DA9 /* TodaysWeatherSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysWeatherSetCell.swift; sourceTree = "<group>"; };
 		09D45D4629C0B6F500B88DA9 /* TodaysWeatherElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysWeatherElements.swift; sourceTree = "<group>"; };
@@ -86,7 +90,7 @@
 				09D45D3E29C07E3700B88DA9 /* Extensions */,
 				0981223B29C06F9A00737D51 /* MainModule */,
 				0981220E29C0615E00737D51 /* Resources */,
-				09B75B2929C332B300200631 /* Service */,
+				09B75B2929C332B300200631 /* ServiceLayer */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -149,12 +153,14 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		09B75B2929C332B300200631 /* Service */ = {
+		09B75B2929C332B300200631 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				09B75B3029C3D47800200631 /* MainService.swift */,
 				097C16A429C218DF00320138 /* NetworkService.swift */,
+				09B75B2C29C380D300200631 /* LocationService.swift */,
 			);
-			path = Service;
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 		09D45D3E29C07E3700B88DA9 /* Extensions */ = {
@@ -278,8 +284,10 @@
 				09D45D4E29C0E51100B88DA9 /* HourlyWeatherBarElements.swift in Sources */,
 				097C16A529C218DF00320138 /* NetworkService.swift in Sources */,
 				0981224429C075DB00737D51 /* MainViewController.swift in Sources */,
+				09B75B3129C3D47800200631 /* MainService.swift in Sources */,
 				097C169F29C1D1C000320138 /* WeeklyWeatherBarElements.swift in Sources */,
 				09B75B2B29C3498E00200631 /* WeatherPresentModel.swift in Sources */,
+				09B75B2D29C380D300200631 /* LocationService.swift in Sources */,
 				0981224629C0784A00737D51 /* ModuleBuilder.swift in Sources */,
 				09D45D4229C0842B00B88DA9 /* TodaysWeatherSetCell.swift in Sources */,
 				09D45D4029C07E4400B88DA9 /* Extensions.swift in Sources */,

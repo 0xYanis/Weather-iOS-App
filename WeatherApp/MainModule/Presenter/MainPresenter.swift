@@ -16,7 +16,7 @@ protocol MainViewProtocol: AnyObject {
 // MARK: INPUT Protocol
 protocol MainPresenterProtocol: AnyObject {
 	
-	init(view: MainViewProtocol, networkService: NetworkServiceProtocol)
+	init(view: MainViewProtocol, mainService: MainServiceProtocol)
 	
 	var todayString: String? { get set }
 	var timeArray: [String]? { get set }
@@ -37,24 +37,16 @@ class MainPresenter: MainPresenterProtocol {
 	var dateArray: [String]?
 	
 	weak var view: MainViewProtocol?
-	let networkService: NetworkServiceProtocol!
+	let mainService: MainServiceProtocol!
 	
-	required init(view: MainViewProtocol, networkService: NetworkServiceProtocol) {
+	required init(view: MainViewProtocol, mainService: MainServiceProtocol) {
 		self.view = view
-		self.networkService = networkService
+		self.mainService = mainService
 		getForecast()
 	}
 	
-	func getTodayString() -> String {
-		let dateFormatter = DateFormatter()
-		dateFormatter.locale = Locale(identifier: "en_US")
-		dateFormatter.dateFormat = "d MMM"
-		let dateStr = "Today, " + dateFormatter.string(from: .now)
-		return dateStr
-	}
-	
 	func getForecast() {
-		networkService.getForecast { [weak self] result in
+		mainService.getWeather { [weak self] result in
 			guard let self = self else { return }
 			DispatchQueue.main.async {
 				switch result {
@@ -69,6 +61,14 @@ class MainPresenter: MainPresenterProtocol {
 				}
 			}
 		}
+	}
+	
+	func getTodayString() -> String {
+		let dateFormatter = DateFormatter()
+		dateFormatter.locale = Locale(identifier: "en_US")
+		dateFormatter.dateFormat = "d MMM"
+		let dateStr = "Today, " + dateFormatter.string(from: .now)
+		return dateStr
 	}
 	
 	func getTimeArray() -> [String] {
@@ -101,7 +101,6 @@ class MainPresenter: MainPresenterProtocol {
 			let dateString = formatter.string(from: date)
 			datesArray.append(dateString)
 		}
-		
 		return datesArray
 	}
 

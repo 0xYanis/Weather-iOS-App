@@ -14,8 +14,10 @@ protocol Builder {
 class ModuleBuilder: Builder {
 	static func createMainModule() -> UIViewController {
 		let view = MainViewController()
+		let locationService = LocationService()
 		let networkService = NetworkService()
-		let presenter = MainPresenter(view: view, networkService: networkService)
+		let mainService = MainService(networkService: networkService, locationService: locationService)
+		let presenter = MainPresenter(view: view, mainService: mainService)
 		view.presenter = presenter
 		return view
 	}
