@@ -97,8 +97,14 @@ extension MainViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		guard let weather = presenter.weather else {
+			let tableViewCell = UITableViewCell()
+			tableViewCell.backgroundColor = .clear
+			return tableViewCell
+		}
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
+			cell.configure(with: weather)
 			return cell
 		} else if indexPath.row == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell

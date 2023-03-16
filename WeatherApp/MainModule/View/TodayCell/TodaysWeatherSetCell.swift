@@ -10,8 +10,8 @@ import UIKit
 class TodaysWeatherSetCell: UITableViewCell {
 	
 	// MARK: - Public
-	func configure() {
-		
+	func configure(with todaysWeather: Weather) {
+		self.todaysWeather = todaysWeather
 	}
 	
 	// MARK: - Init
@@ -26,6 +26,7 @@ class TodaysWeatherSetCell: UITableViewCell {
 	
 	// MARK: - Private properties
 	private var collectionView: UICollectionView!
+	private var todaysWeather: Weather!
 }
 
 // MARK: - Private methods
@@ -54,6 +55,7 @@ extension TodaysWeatherSetCell: UICollectionViewDataSource {
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TodaysWeatherElements.self), for: indexPath) as! TodaysWeatherElements
+		cell.configure(with: todaysWeather)
 		return cell
 	}
 }

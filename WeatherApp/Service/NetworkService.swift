@@ -14,7 +14,7 @@ protocol NetworkServiceProtocol {
 
 class NetworkService: NetworkServiceProtocol {
 	func getForecast(completion: @escaping (Result<Weather?, Error>) -> Void) {
-		let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=55.75396&lon=37.620393"
+		let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=55.75396&lon=37.620393&lang=en_US"
 		guard let url = URL(string: urlString) else {
 			completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
 			return

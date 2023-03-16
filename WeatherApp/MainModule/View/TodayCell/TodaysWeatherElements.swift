@@ -9,6 +9,14 @@ import UIKit
 
 class TodaysWeatherElements: UICollectionViewCell {
 	
+	//MARK: - Public
+	func configure(with todaysWeather: Weather) {
+		locationLabel.text = todaysWeather.geoObject.locality?.name
+		imageView.image = UIImage(named: todaysWeather.fact.condition?.rawValue ?? "")
+		temperatureLabel.text = String(describing: todaysWeather.fact.temp ?? 0)
+		descriptionLabel.text = todaysWeather.fact.condition?.rawValue
+	}
+	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initialize()
@@ -24,11 +32,10 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let todayLabelFontSize: CGFloat             = 14
 		static let todayLabelToLocationOffset: CGFloat     = 15
 		static let imageViewToTodayOffset: CGFloat         = 20
-		static let imageViewWidth: CGFloat                 = 220
+		static let imageViewWidth: CGFloat                 = 200
 		static let temperatureLabelFontSize: CGFloat       = 72
 		static let temperatureLabelToImageOffset: CGFloat  = 5
 		static let degreeLabelFontSize: CGFloat            = 48
-		static let degreeLabelToTemperatureInset: CGFloat  = -10
 		static let descriptionLabelFontSize: CGFloat       = 16
 		static let descriptionLabelToDegreeOffset: CGFloat = 45
 	}
@@ -44,6 +51,7 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	private let todayLabel: UILabel = {
 		let dateFormatter = DateFormatter()
+		dateFormatter.locale = Locale(identifier: "en_US")
 		dateFormatter.dateFormat = "d MMM"
 		let dateStr = dateFormatter.string(from: .now)
 		let label = UILabel()
@@ -55,7 +63,6 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	private let imageView: UIImageView = {
 		let view = UIImageView()
-		view.image = UIImage(named: "sun")
 		view.contentMode = .scaleAspectFill
 		return view
 	}()
@@ -63,7 +70,6 @@ class TodaysWeatherElements: UICollectionViewCell {
 	private let temperatureLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
-		label.text = "8"
 		label.textColor = .white
 		label.layer.shadowColor = UIColor.black.cgColor
 		label.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -89,7 +95,6 @@ class TodaysWeatherElements: UICollectionViewCell {
 	private let descriptionLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.descriptionLabelFontSize)
-		label.text = "Partly Cloudly"
 		label.textColor = .systemGray6
 		return label
 	}()
