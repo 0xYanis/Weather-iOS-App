@@ -9,13 +9,11 @@ import UIKit
 
 class TodaysWeatherSetCell: UITableViewCell {
 	
-	// MARK: - Public
 	func configure(with todaysWeather: Weather, today: String) {
 		self.todaysWeather = todaysWeather
 		self.todayString = today
 	}
 	
-	// MARK: - Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		initialize()
@@ -25,13 +23,11 @@ class TodaysWeatherSetCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	// MARK: - Private properties
 	private var collectionView: UICollectionView!
 	private var todaysWeather: Weather!
 	private var todayString: String!
 }
 
-// MARK: - Private methods
 private extension TodaysWeatherSetCell {
 	func initialize() {
 		backgroundColor = .clear
@@ -44,7 +40,6 @@ private extension TodaysWeatherSetCell {
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalToSuperview()
 		}
-		// MARK: - DELETE BACKGROUND COLOR
 		collectionView.backgroundColor = nil
 	}
 }

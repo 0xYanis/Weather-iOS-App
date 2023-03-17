@@ -24,7 +24,6 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: - Private constants
 	private enum UIConstants {
 		static let timeLabelFontSize: CGFloat             = 12
 		static let imageViewSize: CGFloat                 = 40
@@ -33,7 +32,6 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 		static let temperatureLabelToImageOffset: CGFloat = 5
 	}
 	
-	// MARK: - Private properties
 	private let timeLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica", size: UIConstants.timeLabelFontSize)
@@ -77,7 +75,6 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	
 }
 
-// MARK: - Private methods
 private extension HourlyWeatherBarElements {
 	func initialize() {
 		contentView.addSubview(timeLabel)

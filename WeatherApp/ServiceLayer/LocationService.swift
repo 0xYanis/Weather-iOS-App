@@ -23,7 +23,6 @@ extension LocationService: LocationServiceProtocol {
 		manager.requestWhenInUseAuthorization()
 		manager.delegate = self
 		manager.startUpdatingLocation()
-		print("Я получил Геолокацию!, ", [latitude, longitude])
 		return [latitude, longitude]
 	}
 }

@@ -9,13 +9,11 @@ import UIKit
 
 class HourlyWeatherSetCell: UITableViewCell {
 	
-	// MARK: - Public
 	func configure(with todaysWeather: [Hour], timeArray: [String]) {
 		self.hourlyWeather = todaysWeather
 		self.timeArray = timeArray
 	}
 	
-	// MARK: - Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		initialize()
@@ -25,14 +23,12 @@ class HourlyWeatherSetCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: - Private Constants
 	private enum UIConstants {
 		static let cellWidth: CGFloat               = 55
 		static let cellHeight: CGFloat              = 100
 		static let barViewToTableViewInset: CGFloat = 16
 	}
 	
-	// MARK: - Private properties
 	private var collectionView: UICollectionView!
 	private var hourlyWeather: [Hour] = []
 	private var timeArray: [String] = []
@@ -48,7 +44,6 @@ class HourlyWeatherSetCell: UITableViewCell {
 	}()
 }
 
-// MARK: - Private methods
 private extension HourlyWeatherSetCell {
 	func initialize() {
 		backgroundColor = .clear
@@ -68,7 +63,6 @@ private extension HourlyWeatherSetCell {
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalTo(barView.snp.edges)
 		}
-		// MARK: - DELETE BACKGROUND COLOR
 		collectionView.backgroundColor = nil
 		collectionView.contentInset = .init(top: 12, left: 16, bottom: 0, right: 16)
 	}

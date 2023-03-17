@@ -9,13 +9,11 @@ import UIKit
 
 class WeeklyWeatherSetCell: UITableViewCell {
 	
-	// MARK: - Public
 	func configure(with weeksWeather: [Forecast], dateArray: [String]) {
 		self.weeksWeather = weeksWeather
 		self.dateArray = dateArray
 	}
 	
-	// MARK: - Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		initialize()
@@ -25,7 +23,6 @@ class WeeklyWeatherSetCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: - Private Constants
 	private enum UIConstants {
 		static let cellWidth: CGFloat             = 120
 		static let cellHeight: CGFloat            = 180
@@ -33,7 +30,6 @@ class WeeklyWeatherSetCell: UITableViewCell {
 		static let forecastLabelInset: CGFloat    = 16
 	}
 	
-	// MARK: - Private properties
 	private let forecastLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica", size: UIConstants.forecastLabelFontSize)
@@ -46,7 +42,6 @@ class WeeklyWeatherSetCell: UITableViewCell {
 	private var dateArray: [String] = []
 }
 
-// MARK: - Private methods
 private extension WeeklyWeatherSetCell {
 	func initialize() {
 		backgroundColor = .clear
@@ -67,7 +62,6 @@ private extension WeeklyWeatherSetCell {
 			make.top.equalToSuperview()
 			make.leading.equalToSuperview().inset(UIConstants.forecastLabelInset)
 		}
-		// MARK: - DELETE BACKGROUND COLOR
 		collectionView.backgroundColor = nil
 		collectionView.contentInset = .init(top: 20, left: 16, bottom: 0, right: 16)
 	}

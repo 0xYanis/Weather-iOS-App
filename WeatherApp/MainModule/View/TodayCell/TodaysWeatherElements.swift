@@ -9,7 +9,6 @@ import UIKit
 
 class TodaysWeatherElements: UICollectionViewCell {
 	
-	//MARK: - Public
 	func configure(with todaysWeather: Weather, today: String) {
 		locationLabel.text = todaysWeather.geoObject.province?.name
 		todayLabel.text = today
@@ -27,7 +26,6 @@ class TodaysWeatherElements: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: - Private constants
 	private enum UIConstants {
 		static let locationLabelFontSize: CGFloat          = 32
 		static let todayLabelFontSize: CGFloat             = 14
@@ -41,7 +39,6 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let descriptionLabelToTempOffset: CGFloat   = 10
 	}
 	
-	// MARK: - Private properties
 	private let locationLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.locationLabelFontSize)
@@ -96,7 +93,6 @@ class TodaysWeatherElements: UICollectionViewCell {
 	}()
 }
 
-// MARK: - Private methods
 private extension TodaysWeatherElements {
 	func initialize() {
 		contentView.addSubview(locationLabel)

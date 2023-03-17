@@ -24,7 +24,6 @@ class WeeklyWeatherBarElements: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	//MARK: - Private constants
 	private enum UIConstants {
 		static let dayLabelFontSize: CGFloat              = 14
 		static let dayLabelInset: CGFloat                 = 20
@@ -34,7 +33,6 @@ class WeeklyWeatherBarElements: UICollectionViewCell {
 		static let temperatureLabelToImageOffset: CGFloat = 10
 	}
 	
-	// MARK: - Private properties
 	private let dayLabel: UILabel = {
 		let label = UILabel()
 		label.font = UIFont(name: "Helvetica", size: UIConstants.dayLabelFontSize)
@@ -61,7 +59,6 @@ class WeeklyWeatherBarElements: UICollectionViewCell {
 	}()
 }
 
-// MARK: - Private methods
 private extension WeeklyWeatherBarElements {
 	func initialize() {
 		backgroundColor = UIColor.BarColor

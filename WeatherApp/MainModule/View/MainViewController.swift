@@ -12,13 +12,11 @@ class MainViewController: UIViewController {
 	
 	var presenter: MainPresenterProtocol!
 	
-	//MARK: VC lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		initialize()
 	}
 	
-	// MARK: - Private properties
 	private let tableView = UITableView()
 	
 }
@@ -33,7 +31,6 @@ extension MainViewController: MainViewProtocol {
 	}
 }
 
-// MARK: Private methods
 private extension MainViewController {
 	func initialize() {
 		navigationItem.rightBarButtonItem = makeRightBarButtonItem()
