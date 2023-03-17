@@ -27,6 +27,7 @@ protocol MainPresenterProtocol: AnyObject {
 	func getTodayString() -> String
 	func getTimeArray() -> [String]
 	func getDateArray() -> [String]
+	func handleText( text: String?)
 }
 
 class MainPresenter: MainPresenterProtocol {
@@ -43,6 +44,10 @@ class MainPresenter: MainPresenterProtocol {
 		self.view = view
 		self.mainService = mainService
 		getForecast()
+	}
+	
+	func handleText(text: String?) {
+		print("Текст в Presenter", text!)
 	}
 	
 	func getForecast() {

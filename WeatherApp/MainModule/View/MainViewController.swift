@@ -80,8 +80,25 @@ private extension MainViewController {
 	}
 	
 	func makeDropDownMenu() -> UIMenu {
-		let newLocItem = UIAction(title: "Set new location?", image: UIImage(systemName: "mappin.and.ellipse")) { _ in
+		let newLocItem = UIAction(title: "Set new location?", image: UIImage(systemName: "mappin.and.ellipse")) { [weak self] _ in
+			guard let self = self else { return }
+			let actionSheet = UIAlertController(title: " ", message: nil, preferredStyle: .actionSheet)
+			let textField = UITextField(frame: CGRect(x: 8, y: 8, width: 250, height: 30))
+			textField.placeholder = "Enter Location here"
+			actionSheet.view.addSubview(textField)
 			
+			let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+			actionSheet.addAction(cancelAction)
+			
+			let okAction = UIAlertAction(title: "OK", style: .default) { [weak actionSheet, weak textField] (_) in
+				guard let actionSheet = actionSheet else { return }
+				self.presenter.handleText(text: textField?.text ?? "")
+				textField?.removeFromSuperview()
+				actionSheet.dismiss(animated: true, completion: nil)
+			}
+			actionSheet.addAction(okAction)
+			
+			self.present(actionSheet, animated: true, completion: nil)
 		}
 		return UIMenu(children: [newLocItem])
 	}
