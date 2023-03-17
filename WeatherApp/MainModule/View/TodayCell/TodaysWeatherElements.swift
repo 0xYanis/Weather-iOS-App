@@ -11,7 +11,7 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	//MARK: - Public
 	func configure(with todaysWeather: Weather, today: String) {
-		locationLabel.text = todaysWeather.geoObject.locality?.name
+		locationLabel.text = todaysWeather.geoObject.province?.name
 		todayLabel.text = today
 		imageView.image = UIImage(named: todaysWeather.fact.condition?.rawValue ?? "")
 		temperatureLabel.text = String(describing: todaysWeather.fact.temp ?? 0)

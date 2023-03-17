@@ -107,7 +107,7 @@ struct Day: Decodable {
 }
 
 struct GeoObject: Decodable {
-	let locality: Country?
+	let province: Country?
 }
 
 struct Country: Decodable {
