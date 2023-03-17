@@ -14,13 +14,16 @@ protocol NetworkServiceProtocol: AnyObject {
 
 class NetworkService: NetworkServiceProtocol {
 	
+	private let language = "en_US"
+	private let apiKey = "c64016b4-04d5-41ce-9816-2b54a6229173"
+	
 	func getForecast(latitude: Double, longitude: Double, completion: @escaping (Result<Weather?, Error>) -> Void) {
-		let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=\(latitude)&lon=\(longitude)&lang=en_US"
+		let urlString = "https://api.weather.yandex.ru/v2/forecast?lat=\(latitude)&lon=\(longitude)&lang=\(language)"
 		guard let url = URL(string: urlString) else {
 			completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
 			return
 		}
-		let headers: HTTPHeaders = ["X-Yandex-API-Key": "c64016b4-04d5-41ce-9816-2b54a6229173"]
+		let headers: HTTPHeaders = ["X-Yandex-API-Key": apiKey]
 		
 		AF.request(url, headers: headers).responseDecodable(of: Weather.self) { response in
 			switch response.result {
