@@ -10,7 +10,7 @@ import UIKit
 class TodaysWeatherElements: UICollectionViewCell {
 	
 	func configure(with todaysWeather: Weather, today: String) {
-		locationLabel.text = todaysWeather.geoObject.province?.name
+		locationLabel.text = todaysWeather.geoObject.province?.name ?? "Earth" 
 		todayLabel.text = today
 		imageView.image = UIImage(named: todaysWeather.fact.condition?.rawValue ?? "")
 		temperatureLabel.text = String(describing: todaysWeather.fact.temp ?? 0)
