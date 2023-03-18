@@ -52,7 +52,6 @@ class MainPresenter: MainPresenterProtocol {
 			DispatchQueue.main.async {
 				switch result {
 				case .success(let weather):
-					print(weather?.fact.condition?.rawValue)
 					self.weather     = weather
 					self.todayString = self.getTodayString()
 					self.timeArray   = self.getTimeArray()
