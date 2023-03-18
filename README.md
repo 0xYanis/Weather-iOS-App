@@ -37,6 +37,8 @@
 
 - Alamofire
 
+- Core Location (CLGeocoder)
+
 - API - Yandex weather
 
 - Unit / UI testing
