@@ -23,8 +23,8 @@ extension LocationService: LocationServiceProtocol {
 				completion(nil)
 				return
 			}
-			let latitude = placemark.location?.coordinate.latitude ?? 0
-			let longitude = placemark.location?.coordinate.longitude ?? 0
+			let latitude = placemark.location?.coordinate.latitude ?? 0.0
+			let longitude = placemark.location?.coordinate.longitude ?? 0.0
 			completion([latitude, longitude])
 		}
 	}
