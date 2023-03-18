@@ -63,6 +63,7 @@ private extension MainViewController {
 											   action: nil,
 											   menu: makeDropDownMenu())
 		addBarButtonItem.tintColor = .white
+		addBarButtonItem.accessibilityIdentifier = "addBarButtonItem"
 		return addBarButtonItem
 	}
 	
@@ -73,9 +74,11 @@ private extension MainViewController {
 			
 			let textField = UITextField(frame: CGRect(x: 8, y: 8, width: 250, height: 30))
 			textField.placeholder = "Enter Location here"
+			textField.accessibilityIdentifier = "locationTextField"
 			actionSheet.view.addSubview(textField)
 			
 			let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+			cancelAction.accessibilityIdentifier = "cancelAction"
 			actionSheet.addAction(cancelAction)
 			
 			let okAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak actionSheet] _ in
@@ -86,11 +89,12 @@ private extension MainViewController {
 				textField.removeFromSuperview()
 				actionSheet.dismiss(animated: true, completion: nil)
 			}
+			okAction.accessibilityIdentifier = "okAction"
 			actionSheet.addAction(okAction)
 			
 			self.present(actionSheet, animated: true)
 		}
-		
+		newLocItem.accessibilityIdentifier = "newLocItem"
 		return UIMenu(children: [newLocItem])
 	}
 }
@@ -120,6 +124,7 @@ extension MainViewController: UITableViewDataSource {
 		}
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeeklyWeatherSetCell.self), for: indexPath) as! WeeklyWeatherSetCell
 		cell.configure(with: weather.forecasts ?? [], dateArray: presenter.dateArray ?? [])
+		cell.accessibilityIdentifier = "WeeklyWeatherSetCell"
 		CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
 		return cell
 	}
