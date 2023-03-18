@@ -114,12 +114,12 @@ extension MainViewController: UITableViewDataSource {
 		}
 		if indexPath.row == 1 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
-			cell.configure(with: presenter.weather?.forecasts[indexPath.row - 1].hours ?? [], timeArray: presenter.timeArray ?? [])
+			cell.configure(with: presenter.weather?.forecasts?[indexPath.row - 1].hours ?? [], timeArray: presenter.timeArray ?? [])
 			CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
 			return cell
 		}
 		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeeklyWeatherSetCell.self), for: indexPath) as! WeeklyWeatherSetCell
-		cell.configure(with: weather.forecasts, dateArray: presenter.dateArray ?? [])
+		cell.configure(with: weather.forecasts ?? [], dateArray: presenter.dateArray ?? [])
 		CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
 		return cell
 	}

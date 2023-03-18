@@ -9,50 +9,47 @@ import XCTest
 @testable import WeatherApp
 
 class MockView: MainViewProtocol {
-	var textTest: String?
 	func succes() {
-		textTest = "OK"
 	}
 	func failure(error: Error) {
-		textTest = "ERROR"
 	}
 }
-
-class MockNetworkService: NetworkServiceProtocol {
-	func getForecast(latitude: Double, longitude: Double, completion: @escaping (Result<WeatherApp.Weather?, Error>) -> Void) {}
-}
-
-class MockLocationService: LocationServiceProtocol {
-	func getUserLocation(from address: String, completion: @escaping ([Double]?) -> Void) {}
-}
-
 class MockMainService: MainServiceProtocol {
-	var networkService: NetworkServiceProtocol!
-	var locationService: LocationServiceProtocol!
-	func getWeather(adress: String, completion: @escaping (Result<WeatherApp.Weather?, Error>) -> Void) {
-		<#code#>
+	required init(networkService: WeatherApp.NetworkServiceProtocol, locationService: WeatherApp.LocationServiceProtocol) {}
+	
+	var weather: Weather!
+	
+	//MARK: For testFailureGetWeather
+	init() {}
+	
+	//MARK: For testSuccesGetWeather
+	convenience init(forecast: Weather?) {
+		self.init()
+		self.weather = forecast
 	}
 	
-	
+	func getWeather(adress: String, completion: @escaping (Result<WeatherApp.Weather?, Error>) -> Void) {
+		if let weather = weather {
+			completion(.success(weather))
+		} else {
+			let error = NSError(domain: "", code: 0)
+			completion(.failure(error))
+		}
+	}
 }
 
 final class WeatherAppTests: XCTestCase {
 	
 	var view: MockView!
+	var presenter: MainPresenter!
 	var locationService: LocationServiceProtocol!
 	var networkService: NetworkServiceProtocol!
 	var mainService: MainServiceProtocol!
-	var presenter: MainPresenterProtocol!
+	var weather: Weather!
 	
-    override func setUpWithError() throws {
-		view = MockView()
-		locationService = LocationService()
-		networkService = NetworkService()
-		mainService = MainService(networkService: networkService, locationService: locationService)
-		presenter = MainPresenter(view: view, mainService: mainService)
-	}
+	override func setUpWithError() throws {}
 	
-    override func tearDownWithError() throws {
+	override func tearDownWithError() throws {
 		view            = nil
 		locationService = nil
 		networkService  = nil
@@ -60,20 +57,87 @@ final class WeatherAppTests: XCTestCase {
 		presenter       = nil
 	}
 	
-	func testModuleIsNotNil() throws {
-		XCTAssertNotNil(view, "view is not nil")
-		XCTAssertNotNil(locationService, "locationService is not nil")
-		XCTAssertNotNil(networkService, "networkService is not nil")
-		XCTAssertNotNil(mainService, "mainService is not nil")
-		XCTAssertNotNil(presenter, "presenter is not nil")
+	func testSuccesGetWeather() throws {
+		// Given
+		let weather = Weather(
+			geoObject: GeoObject(province: Country(name: "Foo")),
+			fact: Fact(temp: 10, feelsLike: 10, icon: nil,condition: nil),
+			forecasts: nil)
+		let adress = "Bar"
+		var catchWheather: Weather?
+		view = MockView()
+		mainService = MockMainService(forecast: weather)
+		presenter = MainPresenter(view: view, mainService: mainService)
+		// When
+		mainService.getWeather(adress: adress) { result in
+			switch result {
+			case .success(let weather):
+				catchWheather = weather
+			case .failure(let error):
+				print(error)
+			}
+		}
+		// Then
+		XCTAssertNotNil(catchWheather)
+		XCTAssertEqual(catchWheather?.fact.temp, weather.fact.temp)
 	}
 	
-	func testView() throws {
+	func testFailureGetWeather() throws {
 		// Given
-		presenter.
+		var catchError: Error?
+		let adress = "Foo"
+		view = MockView()
+		mainService = MockMainService()
+		presenter = MainPresenter(view: view, mainService: mainService)
 		// When
-		
+		mainService.getWeather(adress: adress) { result in
+			switch result {
+			case .success( _):
+				break
+			case .failure(let error):
+				catchError = error
+			}
+		}
 		// Then
-		
+		XCTAssertNotNil(catchError)
+	}
+	
+	func testPresenterSetLocation() throws {
+		// Given
+		let adress = "Baz"
+		view = MockView()
+		mainService = MockMainService()
+		presenter = MainPresenter(view: view, mainService: mainService)
+		// When
+		presenter.setLocation(adress: adress)
+		// Then
+		XCTAssertEqual(presenter.location, adress)
+	}
+	
+	
+	func testPresenterGetLocation() throws {
+		// Given
+		let adress = "Baz"
+		let savedLocation: String?
+		view = MockView()
+		mainService = MockMainService()
+		presenter = MainPresenter(view: view, mainService: mainService)
+		// When
+		presenter.setLocation(adress: adress)
+		// Then
+		savedLocation = UserDefaults.standard.string(forKey: "location")
+		XCTAssertEqual(savedLocation, adress)
+	}
+	
+	func testPresenterGetDateArray() throws {
+		// Given
+		// When
+		// Then
+	}
+	func testPresenterGetTimeArray() throws {
+		// Given
+		// When
+		// Then
 	}
 }
+
