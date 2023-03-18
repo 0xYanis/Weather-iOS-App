@@ -29,7 +29,7 @@ class HourlyWeatherSetCell: UITableViewCell {
 		static let barViewToTableViewInset: CGFloat = 16
 	}
 	
-	private var collectionView: UICollectionView!
+	internal var collectionView: UICollectionView!
 	private var hourlyWeather: [Hour] = []
 	private var timeArray: [String] = []
 	private let barView: UIView = {

@@ -23,7 +23,7 @@ class TodaysWeatherSetCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	private var collectionView: UICollectionView!
+	internal var collectionView: UICollectionView!
 	private var todaysWeather: Weather!
 	private var todayString: String!
 }

@@ -25,12 +25,28 @@ class NetworkService: NetworkServiceProtocol {
 		}
 		let headers: HTTPHeaders = ["X-Yandex-API-Key": apiKey]
 		
-		AF.request(url, headers: headers).responseDecodable(of: Weather.self) { response in
+		AF.request(url, headers: headers).validate().responseDecodable(of: Weather.self) { response in
 			switch response.result {
 			case .success(let objects):
 				completion(.success(objects))
 			case .failure(let error):
-				completion(.failure(error))
+				let statusCode = response.response?.statusCode
+				if let statusCode = statusCode {
+					switch statusCode {
+					case 400:
+						completion(.failure(NetworkError.badRequest))
+					case 401:
+						completion(.failure(NetworkError.unauthorized))
+					case 404:
+						completion(.failure(NetworkError.notFound))
+					case 500...599:
+						completion(.failure(NetworkError.serverError))
+					default:
+						completion(.failure(error))
+					}
+				} else {
+					completion(.failure(error))
+				}
 			}
 		}
 	}

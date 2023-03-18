@@ -37,7 +37,7 @@ class WeeklyWeatherSetCell: UITableViewCell {
 		label.textColor = .white
 		return label
 	}()
-	private var collectionView: UICollectionView!
+	internal var collectionView: UICollectionView!
 	private var weeksWeather: [Forecast]!
 	private var dateArray: [String] = []
 }

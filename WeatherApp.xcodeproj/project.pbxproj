@@ -21,6 +21,7 @@
 		09B75B2D29C380D300200631 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B2C29C380D300200631 /* LocationService.swift */; };
 		09B75B3129C3D47800200631 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B3029C3D47800200631 /* MainService.swift */; };
 		09B75B3829C5B74F00200631 /* GradientViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B3729C5B74F00200631 /* GradientViewFactory.swift */; };
+		09B75B3A29C5C37100200631 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B75B3929C5C37100200631 /* NetworkError.swift */; };
 		09D45D4029C07E4400B88DA9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D3F29C07E4400B88DA9 /* Extensions.swift */; };
 		09D45D4229C0842B00B88DA9 /* TodaysWeatherSetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D45D4129C0842B00B88DA9 /* TodaysWeatherSetCell.swift */; };
 		09D45D4529C0852800B88DA9 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 09D45D4429C0852800B88DA9 /* SnapKit */; };
@@ -46,6 +47,7 @@
 		09B75B2C29C380D300200631 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		09B75B3029C3D47800200631 /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
 		09B75B3729C5B74F00200631 /* GradientViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewFactory.swift; sourceTree = "<group>"; };
+		09B75B3929C5C37100200631 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		09D45D3F29C07E4400B88DA9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		09D45D4129C0842B00B88DA9 /* TodaysWeatherSetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysWeatherSetCell.swift; sourceTree = "<group>"; };
 		09D45D4629C0B6F500B88DA9 /* TodaysWeatherElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaysWeatherElements.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				09B75B3029C3D47800200631 /* MainService.swift */,
 				097C16A429C218DF00320138 /* NetworkService.swift */,
 				09B75B2C29C380D300200631 /* LocationService.swift */,
+				09B75B3929C5C37100200631 /* NetworkError.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				0981224629C0784A00737D51 /* ModuleBuilder.swift in Sources */,
 				09D45D4229C0842B00B88DA9 /* TodaysWeatherSetCell.swift in Sources */,
 				09D45D4029C07E4400B88DA9 /* Extensions.swift in Sources */,
+				09B75B3A29C5C37100200631 /* NetworkError.swift in Sources */,
 				09D45D5029C10F8000B88DA9 /* WeeklyWeatherSetCell.swift in Sources */,
 				09D45D4C29C0DD1A00B88DA9 /* HourlyWeatherSetCell.swift in Sources */,
 			);
@@ -434,6 +438,7 @@
 				DEVELOPMENT_TEAM = 2B85PH5M9P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow location acces to use our app!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -464,6 +469,7 @@
 				DEVELOPMENT_TEAM = 2B85PH5M9P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow location acces to use our app!";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
