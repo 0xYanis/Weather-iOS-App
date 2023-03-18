@@ -69,6 +69,7 @@ private extension MainViewController {
 		let newLocItem = UIAction(title: "Set new location?", image: UIImage(systemName: "mappin.and.ellipse")) { [weak self] _ in
 			guard let self = self else { return }
 			let actionSheet = UIAlertController(title: " ", message: nil, preferredStyle: .actionSheet)
+			
 			let textField = UITextField(frame: CGRect(x: 8, y: 8, width: 250, height: 30))
 			textField.placeholder = "Enter Location here"
 			actionSheet.view.addSubview(textField)
@@ -76,16 +77,19 @@ private extension MainViewController {
 			let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 			actionSheet.addAction(cancelAction)
 			
-			let okAction = UIAlertAction(title: "OK", style: .default) { [weak actionSheet, weak textField] (_) in
-				guard let actionSheet = actionSheet else { return }
-				self.presenter.getForecast(adress: textField?.text ?? "")
-				textField?.removeFromSuperview()
+			let okAction = UIAlertAction(title: "OK", style: .default) { [weak self, weak actionSheet] _ in
+				guard let self = self, let actionSheet = actionSheet else { return }
+				let adress = textField.text ?? ""
+				self.presenter.setLocation(adress: adress)
+				self.presenter.getForecast(adress: adress)
+				textField.removeFromSuperview()
 				actionSheet.dismiss(animated: true, completion: nil)
 			}
 			actionSheet.addAction(okAction)
 			
-			self.present(actionSheet, animated: true, completion: nil)
+			self.present(actionSheet, animated: true)
 		}
+		
 		return UIMenu(children: [newLocItem])
 	}
 }

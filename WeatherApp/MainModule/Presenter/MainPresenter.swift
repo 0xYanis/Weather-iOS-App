@@ -23,6 +23,7 @@ protocol MainPresenterProtocol: AnyObject {
 	var dateArray: [String]? { get set }
 	var weather: Weather?    { get set }
 	
+	func setLocation(adress: String)
 	func getForecast(adress: String)
 	func getTodayString() -> String
 	func getTimeArray() -> [String]
@@ -43,6 +44,12 @@ class MainPresenter: MainPresenterProtocol {
 	required init(view: MainViewProtocol, mainService: MainServiceProtocol) {
 		self.view = view
 		self.mainService = mainService
+		
+		if let storedLocation = UserDefaults.standard.string(forKey: "location") {
+			location = storedLocation
+		} else {
+			UserDefaults.standard.set(location, forKey: "location")
+		}
 		getForecast(adress: location)
 	}
 	
@@ -62,6 +69,10 @@ class MainPresenter: MainPresenterProtocol {
 				}
 			}
 		}
+	}
+	func setLocation(adress: String) {
+		location = adress
+		UserDefaults.standard.set(location, forKey: "location")
 	}
 	
 	func getTodayString() -> String {
@@ -104,5 +115,5 @@ class MainPresenter: MainPresenterProtocol {
 		}
 		return datesArray
 	}
-
+	
 }
