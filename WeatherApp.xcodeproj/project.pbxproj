@@ -141,8 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				0981224329C075DB00737D51 /* MainViewController.swift */,
-				09B75B3729C5B74F00200631 /* GradientViewFactory.swift */,
-				09B75B3B29C5D28600200631 /* CollectionViewAnimation.swift */,
+				09B75B3D29C5D4F100200631 /* Static */,
 				09D45D4829C0DA5200B88DA9 /* TodayCell */,
 				09D45D4929C0DA6500B88DA9 /* HourCell */,
 				09D45D4A29C0DA9900B88DA9 /* WeekCell */,
@@ -167,6 +166,15 @@
 				09B75B3929C5C37100200631 /* NetworkError.swift */,
 			);
 			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		09B75B3D29C5D4F100200631 /* Static */ = {
+			isa = PBXGroup;
+			children = (
+				09B75B3729C5B74F00200631 /* GradientViewFactory.swift */,
+				09B75B3B29C5D28600200631 /* CollectionViewAnimation.swift */,
+			);
+			path = Static;
 			sourceTree = "<group>";
 		};
 		09D45D3E29C07E3700B88DA9 /* Extensions */ = {
