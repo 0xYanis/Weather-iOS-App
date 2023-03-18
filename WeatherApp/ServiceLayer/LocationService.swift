@@ -9,30 +9,23 @@ import Foundation
 import CoreLocation
 
 protocol LocationServiceProtocol: AnyObject {
-	func getUserLocation() -> [Double]?
+	func getUserLocation(from address: String, completion: @escaping ([Double]?) -> Void)
 }
 
 class LocationService: NSObject {
-	let manager = CLLocationManager()
-	var latitude: Double = 0
-	var longitude: Double = 0
+	let geocoder = CLGeocoder()
 }
 
 extension LocationService: LocationServiceProtocol {
-	func getUserLocation() -> [Double]? {
-		manager.requestWhenInUseAuthorization()
-		manager.delegate = self
-		manager.startUpdatingLocation()
-		return [latitude, longitude]
-	}
-}
-
-extension LocationService: CLLocationManagerDelegate {
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		if let location = locations.first {
-			self.latitude = location.coordinate.latitude
-			self.longitude = location.coordinate.longitude
-			manager.stopUpdatingLocation()
+	func getUserLocation(from address: String, completion: @escaping ([Double]?) -> Void) {
+		geocoder.geocodeAddressString(address) { placemarks, error in
+			guard let placemark = placemarks?.first, error == nil else {
+				completion(nil)
+				return
+			}
+			let latitude = placemark.location?.coordinate.latitude ?? 0
+			let longitude = placemark.location?.coordinate.longitude ?? 0
+			completion([latitude, longitude])
 		}
 	}
 }

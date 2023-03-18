@@ -11,7 +11,7 @@ protocol MainServiceProtocol: AnyObject {
 	var networkService: NetworkServiceProtocol { get }
 	var locationService: LocationServiceProtocol { get }
 	
-	func getWeather(completion: @escaping (Result<Weather?, Error>) -> Void)
+	func getWeather(adress: String, completion: @escaping (Result<Weather?, Error>) -> Void)
 }
 
 class MainService: MainServiceProtocol {
@@ -23,14 +23,15 @@ class MainService: MainServiceProtocol {
 		self.locationService = locationService
 	}
 	
-	func getWeather(completion: @escaping (Result<Weather?, Error>) -> Void) {
-		guard let userLocation = locationService.getUserLocation() else {
-			completion(.failure(NSError(domain: "Unable to get user location", code: 0, userInfo: nil)))
-			return
-		}
-		
-		networkService.getForecast(latitude: userLocation[0], longitude: userLocation[1]) { result in
-			completion(result)
+	func getWeather(adress: String, completion: @escaping (Result<Weather?, Error>) -> Void) {
+		locationService.getUserLocation(from: adress) { userLocation in
+			guard let userLocation = userLocation else {
+				completion(.failure(NSError(domain: "Unable to get user location", code: 0, userInfo: nil)))
+				return
+			}
+			self.networkService.getForecast(latitude: userLocation[0], longitude: userLocation[1]) { result in
+				completion(result)
+			}
 		}
 	}
 }

@@ -23,15 +23,15 @@ protocol MainPresenterProtocol: AnyObject {
 	var dateArray: [String]? { get set }
 	var weather: Weather?    { get set }
 	
-	func getForecast()
+	func getForecast(adress: String)
 	func getTodayString() -> String
 	func getTimeArray() -> [String]
 	func getDateArray() -> [String]
-	func handleText( text: String?)
 }
 
 class MainPresenter: MainPresenterProtocol {
 	
+	var location: String = "Moscow"
 	var weather: Weather?
 	var todayString: String?
 	var timeArray: [String]?
@@ -43,19 +43,16 @@ class MainPresenter: MainPresenterProtocol {
 	required init(view: MainViewProtocol, mainService: MainServiceProtocol) {
 		self.view = view
 		self.mainService = mainService
-		getForecast()
+		getForecast(adress: location)
 	}
 	
-	func handleText(text: String?) {
-		print("Текст в Presenter", text!)
-	}
-	
-	func getForecast() {
-		mainService.getWeather { [weak self] result in
+	func getForecast(adress: String) {
+		mainService.getWeather(adress: adress) { [weak self] result in
 			guard let self = self else { return }
 			DispatchQueue.main.async {
 				switch result {
 				case .success(let weather):
+					print(weather?.fact.condition?.rawValue)
 					self.weather     = weather
 					self.todayString = self.getTodayString()
 					self.timeArray   = self.getTimeArray()

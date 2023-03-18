@@ -55,8 +55,6 @@ private extension MainViewController {
 		present(alertController, animated: true, completion: nil)
 	}
 	
-	
-	
 	func backgroundGradient(_ bounds: CGRect,_ topColor: UIColor,_ bottomColor: UIColor) -> UIView {
 		let gradientLayer = CAGradientLayer()
 		gradientLayer.frame = bounds
@@ -92,7 +90,7 @@ private extension MainViewController {
 			
 			let okAction = UIAlertAction(title: "OK", style: .default) { [weak actionSheet, weak textField] (_) in
 				guard let actionSheet = actionSheet else { return }
-				self.presenter.handleText(text: textField?.text ?? "")
+				self.presenter.getForecast(adress: textField?.text ?? "")
 				textField?.removeFromSuperview()
 				actionSheet.dismiss(animated: true, completion: nil)
 			}
