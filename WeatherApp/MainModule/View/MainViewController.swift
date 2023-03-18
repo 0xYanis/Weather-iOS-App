@@ -107,30 +107,25 @@ extension MainViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 3
 	}
-	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let weather = presenter.weather else {
-			let tableViewCell = UITableViewCell()
-			tableViewCell.backgroundColor = .clear
-			return tableViewCell
+			let cell = UITableViewCell()
+			cell.backgroundColor = .clear
+			return cell
 		}
-		let forecast = weather.forecasts[indexPath.row]
-		let todayString = presenter.todayString ?? ""
-		let timeArray = presenter.timeArray ?? []
-		let dateArray = presenter.dateArray ?? []
 		if indexPath.row == 0 {
 			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TodaysWeatherSetCell.self), for: indexPath) as! TodaysWeatherSetCell
-			cell.configure(with: weather, today: todayString)
-			return cell
-		} else if indexPath.row == 1 {
-			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
-			cell.configure(with: forecast.hours ?? [], timeArray: timeArray)
-			return cell
-		} else {
-			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeeklyWeatherSetCell.self), for: indexPath) as! WeeklyWeatherSetCell
-			cell.configure(with: weather.forecasts, dateArray: dateArray)
+			cell.configure(with: weather, today: presenter.todayString ?? "")
 			return cell
 		}
+		if indexPath.row == 1 {
+			let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HourlyWeatherSetCell.self), for: indexPath) as! HourlyWeatherSetCell
+			cell.configure(with: presenter.weather?.forecasts[indexPath.row - 1].hours ?? [], timeArray: presenter.timeArray ?? [])
+			return cell
+		}
+		let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: WeeklyWeatherSetCell.self), for: indexPath) as! WeeklyWeatherSetCell
+		cell.configure(with: weather.forecasts, dateArray: presenter.dateArray ?? [])
+		return cell
 	}
 }
 
