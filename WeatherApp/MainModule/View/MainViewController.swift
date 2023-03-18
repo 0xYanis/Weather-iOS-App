@@ -48,6 +48,7 @@ private extension MainViewController {
 		}
 		tableView.backgroundView = GradientViewFactory.makeGradientView(frame: view.frame, UIColor.topGradientColor, UIColor.BottomGradientColor)
 	}
+	
 	func alert(message: String) {
 		let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
 		let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
