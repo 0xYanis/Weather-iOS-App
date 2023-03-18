@@ -38,7 +38,7 @@ class MockMainService: MainServiceProtocol {
 	}
 }
 
-final class WeatherAppTests: XCTestCase {
+final class MainModulePresenterTests: XCTestCase {
 	
 	var view: MockView!
 	var presenter: MainPresenter!
