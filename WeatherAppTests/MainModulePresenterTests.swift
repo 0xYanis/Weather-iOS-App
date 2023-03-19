@@ -126,16 +126,5 @@ final class MainModulePresenterTests: XCTestCase {
 		savedLocation = UserDefaults.standard.string(forKey: "location")
 		XCTAssertEqual(savedLocation, adress)
 	}
-	
-	func testPresenterGetDateArray() throws {
-		// Given
-		// When
-		// Then
-	}
-	func testPresenterGetTimeArray() throws {
-		// Given
-		// When
-		// Then
-	}
 }
 
