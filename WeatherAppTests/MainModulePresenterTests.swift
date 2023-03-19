@@ -19,10 +19,8 @@ class MockMainService: MainServiceProtocol {
 	
 	var weather: Weather!
 	
-	//MARK: For testFailureGetWeather
 	init() {}
 	
-	//MARK: For testSuccesGetWeather
 	convenience init(forecast: Weather?) {
 		self.init()
 		self.weather = forecast
