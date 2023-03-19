@@ -19,10 +19,8 @@ class MockMainService: MainServiceProtocol {
 	
 	var weather: Weather!
 	
-	//MARK: For testFailureGetWeather
 	init() {}
 	
-	//MARK: For testSuccesGetWeather
 	convenience init(forecast: Weather?) {
 		self.init()
 		self.weather = forecast
@@ -127,17 +125,6 @@ final class MainModulePresenterTests: XCTestCase {
 		// Then
 		savedLocation = UserDefaults.standard.string(forKey: "location")
 		XCTAssertEqual(savedLocation, adress)
-	}
-	
-	func testPresenterGetDateArray() throws {
-		// Given
-		// When
-		// Then
-	}
-	func testPresenterGetTimeArray() throws {
-		// Given
-		// When
-		// Then
 	}
 }
 
