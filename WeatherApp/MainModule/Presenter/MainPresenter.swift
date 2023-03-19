@@ -39,7 +39,7 @@ class MainPresenter: MainPresenterProtocol {
 	var dateArray: [String]?
 	
 	weak var view: MainViewProtocol?
-	let mainService: MainServiceProtocol!
+	let mainService: MainServiceProtocol
 	
 	required init(view: MainViewProtocol, mainService: MainServiceProtocol) {
 		self.view = view
