@@ -34,7 +34,10 @@ private extension TodaysWeatherSetCell {
 		let layout = UICollectionViewFlowLayout()
 		layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		collectionView.register(TodaysWeatherElements.self, forCellWithReuseIdentifier: String(describing: TodaysWeatherElements.self))
+		collectionView.register(
+			TodaysWeatherElements.self,
+			forCellWithReuseIdentifier: String(describing: TodaysWeatherElements.self)
+		)
 		collectionView.dataSource = self
 		contentView.addSubview(collectionView)
 		collectionView.snp.makeConstraints { make in
@@ -46,12 +49,21 @@ private extension TodaysWeatherSetCell {
 
 // MARK: - UICollectionViewDataSource
 extension TodaysWeatherSetCell: UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(
+		_ collectionView: UICollectionView,
+		numberOfItemsInSection section: Int
+	) -> Int {
 		return 1
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TodaysWeatherElements.self), for: indexPath) as! TodaysWeatherElements
+	func collectionView(
+		_ collectionView: UICollectionView,
+		cellForItemAt indexPath: IndexPath
+	) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(
+			withReuseIdentifier: String(describing: TodaysWeatherElements.self),
+			for: indexPath
+		) as! TodaysWeatherElements
 		cell.configure(with: todaysWeather, today: todayString)
 		return cell
 	}
