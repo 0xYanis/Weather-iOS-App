@@ -87,33 +87,20 @@ private extension MainViewController {
 			let actionSheet = UIAlertController(
 				title: " ", message: nil, preferredStyle: .actionSheet
 			)
+			actionSheet.view.addSubview(self.textField())
+			actionSheet.addAction(self.cancelAction())
 			
-			let textField = UITextField(
-				frame: CGRect(x: 8, y: 8, width: 250, height: 30)
-			)
-			textField.placeholder = "Enter Location here"
-			textField.accessibilityIdentifier = "locationTextField"
-			actionSheet.view.addSubview(textField)
-			
-			let cancelAction = UIAlertAction(
-				title: "Cancel", style: .cancel, handler: nil
-			)
-			cancelAction.accessibilityIdentifier = "cancelAction"
-			actionSheet.addAction(cancelAction)
-			
-			let okAction = UIAlertAction(
-				title: "OK", style: .default
-			) { [weak self, weak actionSheet] _ in
+			let okAction = UIAlertAction(title: "OK", style: .default){ [weak self, weak actionSheet] _ in
 				guard
 					let self = self,
 					let actionSheet = actionSheet
 				else { return }
 				
-				let adress = textField.text ?? ""
+				let adress = self.textField().text ?? ""
 				
 				self.presenter.setLocation(adress: adress)
 				self.presenter.getForecast(adress: adress)
-				textField.removeFromSuperview()
+				self.textField().removeFromSuperview()
 				actionSheet.dismiss(animated: true, completion: nil)
 			}
 			okAction.accessibilityIdentifier = "okAction"
@@ -123,6 +110,21 @@ private extension MainViewController {
 		}
 		newLocItem.accessibilityIdentifier = "newLocItem"
 		return UIMenu(children: [newLocItem])
+	}
+	func cancelAction() -> UIAlertAction {
+		let cancelAction = UIAlertAction(
+			title: "Cancel", style: .cancel, handler: nil
+		)
+		cancelAction.accessibilityIdentifier = "cancelAction"
+		return cancelAction
+	}
+	func textField() -> UITextField {
+		let textField = UITextField(
+			frame: CGRect(x: 8, y: 8, width: 250, height: 30)
+		)
+		textField.placeholder = "Enter Location here"
+		textField.accessibilityIdentifier = "locationTextField"
+		return textField
 	}
 }
 
