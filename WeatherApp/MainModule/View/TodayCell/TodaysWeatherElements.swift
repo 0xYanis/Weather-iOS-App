@@ -41,7 +41,8 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	private let locationLabel: UILabel = {
 		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.locationLabelFontSize)
+		label.font = UIFont(name: "Helvetica-Bold",
+							size: UIConstants.locationLabelFontSize)
 		label.text = "My location"
 		label.textColor = .white
 		return label
@@ -49,7 +50,8 @@ class TodaysWeatherElements: UICollectionViewCell {
 	//
 	private let todayLabel: UILabel = {
 		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.todayLabelFontSize)
+		label.font = UIFont(name: "Helvetica-Bold",
+							size: UIConstants.todayLabelFontSize)
 		label.textColor = .systemGray6
 		return label
 	}()
@@ -62,7 +64,8 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	private let temperatureLabel: UILabel = {
 		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
+		label.font = UIFont(name: "Helvetica-Bold",
+							size: UIConstants.temperatureLabelFontSize)
 		label.textColor = .white
 		label.layer.shadowColor = UIColor.black.cgColor
 		label.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -74,7 +77,8 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	private let degreeLabel: UILabel = {
 		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.degreeLabelFontSize)
+		label.font = UIFont(name: "Helvetica-Bold",
+							size: UIConstants.degreeLabelFontSize)
 		label.text = "\u{00B0}"
 		label.textColor = .white
 		label.layer.shadowColor = UIColor.black.cgColor
@@ -87,7 +91,8 @@ class TodaysWeatherElements: UICollectionViewCell {
 	
 	private let descriptionLabel: UILabel = {
 		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.descriptionLabelFontSize)
+		label.font = UIFont(name: "Helvetica-Bold",
+							size: UIConstants.descriptionLabelFontSize)
 		label.textColor = .systemGray6
 		return label
 	}()
@@ -103,29 +108,32 @@ private extension TodaysWeatherElements {
 		contentView.addSubview(todayLabel)
 		todayLabel.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
-			make.top.equalTo(locationLabel.snp.bottom).offset(UIConstants.todayLabelToLocationOffset)
+			make.top.equalTo(locationLabel.snp.bottom)
+				.offset(UIConstants.todayLabelToLocationOffset)
 		}
 		contentView.addSubview(imageView)
 		imageView.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
-			make.top.equalTo(todayLabel.snp.bottom).offset(UIConstants.imageViewToTodayOffset)
+			make.top.equalTo(todayLabel.snp.bottom)
+				.offset(UIConstants.imageViewToTodayOffset)
 			make.width.equalTo(UIConstants.imageViewWidth)
 		}
 		contentView.addSubview(temperatureLabel)
 		temperatureLabel.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
-			make.top.equalTo(imageView.snp.bottom).offset(UIConstants.temperatureLabelToImageOffset)
+			make.top.equalTo(imageView.snp.bottom)
+				.offset(UIConstants.temperatureLabelToImageOffset)
 		}
 		contentView.addSubview(degreeLabel)
 		degreeLabel.snp.makeConstraints { make in
-			//make.trailing.top.equalTo(temperatureLabel).inset(UIConstants.degreeLabelToTemperatureInset)
 			make.top.equalTo(temperatureLabel.snp.top).inset(5)
 			make.trailing.equalTo(temperatureLabel.snp.trailing).offset(17)
 		}
 		contentView.addSubview(descriptionLabel)
 		descriptionLabel.snp.makeConstraints { make in
 			make.centerX.equalToSuperview()
-			make.top.equalTo(temperatureLabel.snp.bottom).offset(UIConstants.descriptionLabelToTempOffset)
+			make.top.equalTo(temperatureLabel.snp.bottom)
+				.offset(UIConstants.descriptionLabelToTempOffset)
 		}
 	}
 }
