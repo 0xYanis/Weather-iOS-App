@@ -16,9 +16,18 @@ class ModuleBuilder: Builder {
 		let view = MainViewController()
 		let locationService = LocationService()
 		let networkService = NetworkService()
-		let mainService = MainService(networkService: networkService, locationService: locationService)
-		let presenter = MainPresenter(view: view, mainService: mainService)
+		let mainService = MainService(
+            networkService: networkService,
+            locationService: locationService
+        )
+        
+		let presenter = MainPresenter(
+            view: view,
+            mainService: mainService
+        )
+        
 		view.presenter = presenter
+        
 		return view
 	}
 }

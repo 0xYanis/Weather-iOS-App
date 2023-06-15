@@ -12,7 +12,7 @@ final class MainViewController: UIViewController {
     
     var presenter: MainPresenterProtocol?
     
-    private let tableView = UITableView()
+    private let tableView = WeatherTableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,39 +33,23 @@ extension MainViewController: MainViewProtocol {
 
 private extension MainViewController {
     func initialize() {
-        navigationItem.rightBarButtonItem = makeRightBarButtonItem()
+        navigationItem.rightBarButtonItem = makeRightBarButtonItem
         createTableView()
     }
     
     func createTableView() {
-        tableView.backgroundColor = .clear
-        tableView.isScrollEnabled = false
-        tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorColor = .clear
-        tableView.register(
-            TodaysWeatherSetCell.self,
-            forCellReuseIdentifier: TodaysWeatherSetCell.cellId
-        )
-        tableView.register(
-            HourlyWeatherSetCell.self,
-            forCellReuseIdentifier: HourlyWeatherSetCell.cellId
-        )
-        
-        tableView.register(
-            WeeklyWeatherSetCell.self,
-            forCellReuseIdentifier: WeeklyWeatherSetCell.cellId
+        tableView.presenter = presenter
+        tableView.backgroundView = GradientViewFactory.makeGradientView(
+            frame: view.frame,
+            UIColor.topGradientColor,
+            UIColor.BottomGradientColor
         )
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        tableView.backgroundView = GradientViewFactory.makeGradientView(
-            frame: view.frame,
-            UIColor.topGradientColor,
-            UIColor.BottomGradientColor
-        )
     }
     
     func alert(message: String) {
@@ -77,49 +61,49 @@ private extension MainViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func makeRightBarButtonItem() -> UIBarButtonItem {
-        let addBarButtonItem = UIBarButtonItem(
+    var makeRightBarButtonItem: UIBarButtonItem {
+        let button = UIBarButtonItem(
             title: nil, image: UIImage(systemName: "plus.circle.fill"),
-            target: self, action: nil,menu: makeDropDownMenu()
+            target: self, action: nil,menu: makeDropDownMenu
         )
-        addBarButtonItem.tintColor = .white
-        addBarButtonItem.accessibilityIdentifier = "addBarButtonItem"
-        return addBarButtonItem
+        button.tintColor = .white
+        button.accessibilityIdentifier = "addBarButtonItem"
+        return button
     }
     
-    func makeDropDownMenu() -> UIMenu {
+    var makeDropDownMenu: UIMenu {
         let newLocItem = UIAction(
             title: "Set new location?", image: UIImage(systemName: "mappin.and.ellipse")
-        )
-        { [weak self] _ in
-            guard let self = self else { return }
-            let actionSheet = UIAlertController(
-                title: " ", message: nil, preferredStyle: .actionSheet
-            )
-            actionSheet.view.addSubview(self.textField())
-            actionSheet.addAction(self.cancelAction())
-            
-            let okAction = UIAlertAction(title: "OK", style: .default){ [weak self, weak actionSheet] _ in
-                guard
-                    let self = self,
-                    let actionSheet = actionSheet
-                else { return }
-                
-                let adress = self.textField().text ?? ""
-                
-                self.presenter?.setLocation(adress: adress)
-                self.presenter?.getForecast(adress: adress)
-                self.textField().removeFromSuperview()
-                actionSheet.dismiss(animated: true, completion: nil)
-            }
-            okAction.accessibilityIdentifier = "okAction"
-            actionSheet.addAction(okAction)
-            
-            self.present(actionSheet, animated: true)
+        ) { [weak self] _ in
+            self?.showNewLocationActionSheet()
         }
         newLocItem.accessibilityIdentifier = "newLocItem"
         return UIMenu(children: [newLocItem])
     }
+
+    private func showNewLocationActionSheet() {
+        let actionSheet = UIAlertController(
+            title: " ", message: nil, preferredStyle: .actionSheet
+        )
+        actionSheet.view.addSubview(self.textField())
+        actionSheet.addAction(self.cancelAction())
+        actionSheet.addAction(self.okAction())
+
+        self.present(actionSheet, animated: true)
+    }
+
+    private func okAction() -> UIAlertAction {
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            let address = self.textField().text ?? ""
+            self.presenter?.setLocation(adress: address)
+            self.presenter?.getForecast(adress: address)
+            self.textField().removeFromSuperview()
+        }
+        okAction.accessibilityIdentifier = "okAction"
+        return okAction
+    }
+    
     func cancelAction() -> UIAlertAction {
         let cancelAction = UIAlertAction(
             title: "Cancel", style: .cancel, handler: nil
@@ -127,64 +111,20 @@ private extension MainViewController {
         cancelAction.accessibilityIdentifier = "cancelAction"
         return cancelAction
     }
+    
+    
     func textField() -> UITextField {
         let textField = UITextField(
-            frame: CGRect(x: 8, y: 8, width: 250, height: 30)
+            frame: CGRect(
+                x: 8, y: 8,
+                width: 250, height: 30
+            )
         )
         textField.placeholder = "Enter Location here"
         textField.accessibilityIdentifier = "locationTextField"
         return textField
     }
-}
-
-// MARK: - UITableViewDataSource
-extension MainViewController: UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
-        return 3
-    }
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        guard let weather = presenter?.weather else {
-            let cell = UITableViewCell()
-            cell.backgroundColor = .clear
-            return cell
-        }
-        if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: TodaysWeatherSetCell.cellId,
-                for: indexPath
-            ) as! TodaysWeatherSetCell
-            cell.configure(with: weather, today: presenter?.todayString ?? "")
-            CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
-            return cell
-        }
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: HourlyWeatherSetCell.cellId,
-                for: indexPath
-            ) as! HourlyWeatherSetCell
-            cell.configure(with: presenter?.weather?.forecasts?[indexPath.row - 1].hours ?? [],
-                           timeArray: presenter?.timeArray ?? []
-            )
-            CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
-            return cell
-        }
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: WeeklyWeatherSetCell.cellId,
-            for: indexPath
-        ) as! WeeklyWeatherSetCell
-        cell.configure(with: weather.forecasts ?? [],
-                       dateArray: presenter?.dateArray ?? []
-        )
-        cell.accessibilityIdentifier = "WeeklyWeatherSetCell"
-        CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
-        return cell
-    }
+    
 }
 
 //MARK: - UITableViewDelegate
@@ -202,6 +142,7 @@ extension MainViewController: UITableViewDelegate {
             return self.calculateHeight(multiplier: 3.27)
         }
     }
+    
     private func calculateHeight(multiplier: CGFloat) -> CGFloat {
         let screenHeight = UIScreen.main.bounds.height
         let tableСellHeight = screenHeight - view.safeAreaInsets.top - view.safeAreaInsets.bottom
