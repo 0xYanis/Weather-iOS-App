@@ -9,6 +9,12 @@ import UIKit
 
 class TodaysWeatherSetCell: UITableViewCell {
 	
+    static let cellId = "TodaysWeatherSetCell"
+    
+    internal var collectionView: UICollectionView!
+    private var todaysWeather: Weather!
+    private var todayString: String!
+    
 	func configure(with todaysWeather: Weather, today: String) {
 		self.todaysWeather = todaysWeather
 		self.todayString = today
@@ -22,10 +28,6 @@ class TodaysWeatherSetCell: UITableViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	internal var collectionView: UICollectionView!
-	private var todaysWeather: Weather!
-	private var todayString: String!
 }
 
 private extension TodaysWeatherSetCell {

@@ -9,6 +9,19 @@ import UIKit
 
 class WeeklyWeatherSetCell: UITableViewCell {
 	
+    static let cellId = "WeeklyWeatherSetCell"
+    
+    private let forecastLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica", size: UIConstants.forecastLabelFontSize)
+        label.text = "7 days forecast"
+        label.textColor = .white
+        return label
+    }()
+    internal var collectionView: UICollectionView!
+    private var weeksWeather: [Forecast]!
+    private var dateArray: [String] = []
+    
 	func configure(with weeksWeather: [Forecast], dateArray: [String]) {
 		self.weeksWeather = weeksWeather
 		self.dateArray = dateArray
@@ -29,17 +42,6 @@ class WeeklyWeatherSetCell: UITableViewCell {
 		static let forecastLabelFontSize: CGFloat = 18
 		static let forecastLabelInset: CGFloat    = 16
 	}
-	
-	private let forecastLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica", size: UIConstants.forecastLabelFontSize)
-		label.text = "7 days forecast"
-		label.textColor = .white
-		return label
-	}()
-	internal var collectionView: UICollectionView!
-	private var weeksWeather: [Forecast]!
-	private var dateArray: [String] = []
 }
 
 private extension WeeklyWeatherSetCell {

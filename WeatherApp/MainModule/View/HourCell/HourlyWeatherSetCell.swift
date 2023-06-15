@@ -9,6 +9,22 @@ import UIKit
 
 class HourlyWeatherSetCell: UITableViewCell {
 	
+    static let cellId = "HourlyWeatherSetCell"
+    
+    internal var collectionView: UICollectionView!
+    private var hourlyWeather: [Hour] = []
+    private var timeArray: [String] = []
+    private let barView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.BarColor
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.15
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.shadowRadius = 4.0
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
 	func configure(with todaysWeather: [Hour], timeArray: [String]) {
 		self.hourlyWeather = todaysWeather
 		self.timeArray = timeArray
@@ -28,20 +44,6 @@ class HourlyWeatherSetCell: UITableViewCell {
 		static let cellHeight: CGFloat              = 100
 		static let barViewToTableViewInset: CGFloat = 16
 	}
-	
-	internal var collectionView: UICollectionView!
-	private var hourlyWeather: [Hour] = []
-	private var timeArray: [String] = []
-	private let barView: UIView = {
-		let view = UIView()
-		view.backgroundColor = UIColor.BarColor
-		view.layer.shadowColor = UIColor.black.cgColor
-		view.layer.shadowOpacity = 0.15
-		view.layer.shadowOffset = CGSize(width: 0, height: 2)
-		view.layer.shadowRadius = 4.0
-		view.layer.cornerRadius = 15
-		return view
-	}()
 }
 
 private extension HourlyWeatherSetCell {

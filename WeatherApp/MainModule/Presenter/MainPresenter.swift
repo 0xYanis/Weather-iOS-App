@@ -30,29 +30,40 @@ protocol MainPresenterProtocol: AnyObject {
 	func getDateArray() -> [String]
 }
 
-class MainPresenter: MainPresenterProtocol {
-	
-	var location: String = "Moscow"
-	var weather: Weather?
-	var todayString: String?
-	var timeArray: [String]?
-	var dateArray: [String]?
-	
-	weak var view: MainViewProtocol?
-	let mainService: MainServiceProtocol
-	
-	required init(view: MainViewProtocol, mainService: MainServiceProtocol) {
-		self.view = view
-		self.mainService = mainService
-		
-		if let storedLocation = UserDefaults.standard.string(forKey: "location") {
-			location = storedLocation
-		} else {
-			UserDefaults.standard.set(location, forKey: "location")
-		}
-		getForecast(adress: location)
-	}
-	
+final class MainPresenter {
+    
+    weak var view: MainViewProtocol?
+    let mainService: MainServiceProtocol
+    
+    var weather: Weather?
+    var todayString: String?
+    var timeArray: [String]?
+    var dateArray: [String]?
+    
+    private var location: String = "Moscow"
+    
+    required init(
+        view: MainViewProtocol,
+        mainService: MainServiceProtocol
+    ) {
+        self.view = view
+        self.mainService = mainService
+        
+        getForecast(adress: locationFromUD)
+    }
+    
+    private var locationFromUD: String {
+        if let storedLocation = UserDefaults.standard.string(forKey: "location") {
+            location = storedLocation
+        } else {
+            UserDefaults.standard.set(location, forKey: "location")
+        }
+        
+        return location
+    }
+}
+
+extension MainPresenter: MainPresenterProtocol {
 	func getForecast(adress: String) {
 		mainService.getWeather(adress: adress) { [weak self] result in
 			guard let self = self else { return }
@@ -70,6 +81,7 @@ class MainPresenter: MainPresenterProtocol {
 			}
 		}
 	}
+    
 	func setLocation(adress: String) {
 		location = adress
 		UserDefaults.standard.set(location, forKey: "location")
