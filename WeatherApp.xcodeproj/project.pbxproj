@@ -169,40 +169,24 @@
 		0981223B29C06F9A00737D51 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
-				0981223E29C0721500737D51 /* Model */,
-				0981224029C0722600737D51 /* Presenter */,
-				0981223F29C0721C00737D51 /* View */,
+				097C16A629C2229800320138 /* Weather.swift */,
+				0981224129C0724000737D51 /* MainPresenter.swift */,
+				0981224329C075DB00737D51 /* MainViewController.swift */,
+				0981223F29C0721C00737D51 /* Subviews */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
 		};
-		0981223E29C0721500737D51 /* Model */ = {
+		0981223F29C0721C00737D51 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				097C16A629C2229800320138 /* Weather.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		0981223F29C0721C00737D51 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0981224329C075DB00737D51 /* MainViewController.swift */,
 				09C533272A3AED3A00DC20B6 /* WeatherTableView.swift */,
 				09B75B3D29C5D4F100200631 /* Static */,
 				09D45D4829C0DA5200B88DA9 /* TodayCell */,
 				09D45D4929C0DA6500B88DA9 /* HourCell */,
 				09D45D4A29C0DA9900B88DA9 /* WeekCell */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		0981224029C0722600737D51 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				0981224129C0724000737D51 /* MainPresenter.swift */,
-			);
-			path = Presenter;
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 		09B75B2929C332B300200631 /* ServiceLayer */ = {
