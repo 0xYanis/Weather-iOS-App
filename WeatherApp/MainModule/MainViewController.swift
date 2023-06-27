@@ -81,30 +81,30 @@ private extension MainViewController {
         return UIMenu(children: [newLocItem])
     }
 
-    private func showNewLocationActionSheet() {
+    func showNewLocationActionSheet() {
         let actionSheet = UIAlertController(
             title: " ", message: nil, preferredStyle: .actionSheet
         )
-        actionSheet.view.addSubview(self.textField())
-        actionSheet.addAction(self.cancelAction())
-        actionSheet.addAction(self.okAction())
+        actionSheet.view.addSubview(textField)
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(okAction)
 
         self.present(actionSheet, animated: true)
     }
 
-    private func okAction() -> UIAlertAction {
+    var okAction: UIAlertAction {
         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            let address = self.textField().text ?? ""
+            let address = self.textField.text ?? ""
             self.presenter?.setLocation(adress: address)
             self.presenter?.getForecast(adress: address)
-            self.textField().removeFromSuperview()
+            self.textField.removeFromSuperview()
         }
         okAction.accessibilityIdentifier = "okAction"
         return okAction
     }
     
-    func cancelAction() -> UIAlertAction {
+    var cancelAction: UIAlertAction {
         let cancelAction = UIAlertAction(
             title: "Cancel", style: .cancel, handler: nil
         )
@@ -113,7 +113,7 @@ private extension MainViewController {
     }
     
     
-    func textField() -> UITextField {
+    var textField: UITextField {
         let textField = UITextField(
             frame: CGRect(
                 x: 8, y: 8,
