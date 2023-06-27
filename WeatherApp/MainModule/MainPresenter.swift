@@ -18,16 +18,16 @@ protocol MainPresenterProtocol: AnyObject {
 	
 	init(view: MainViewProtocol, mainService: MainServiceProtocol)
 	
-	var todayString: String? { get set }
-	var timeArray: [String]? { get set }
-	var dateArray: [String]? { get set }
-	var weather: Weather?    { get set }
+	var todayString: String? { get }
+	var timeArray: [String]? { get }
+	var dateArray: [String]? { get }
+	var weather: Weather?    { get }
 	
 	func setLocation(adress: String)
 	func getForecast(adress: String)
-	func getTodayString() -> String
-	func getTimeArray() -> [String]
-	func getDateArray() -> [String]
+    var getTodayString: String { get }
+    var getTimeArray: [String] { get }
+    var getDateArray: [String] { get }
 }
 
 final class MainPresenter {
@@ -71,9 +71,9 @@ extension MainPresenter: MainPresenterProtocol {
 				switch result {
 				case .success(let weather):
 					self.weather     = weather
-					self.todayString = self.getTodayString()
-					self.timeArray   = self.getTimeArray()
-					self.dateArray   = self.getDateArray()
+					self.todayString = self.getTodayString
+					self.timeArray   = self.getTimeArray
+					self.dateArray   = self.getDateArray
 					self.view?.succes()
 				case .failure(let error):
 					self.view?.failure(error: error)
@@ -87,7 +87,7 @@ extension MainPresenter: MainPresenterProtocol {
 		UserDefaults.standard.set(location, forKey: "location")
 	}
 	
-	func getTodayString() -> String {
+    var getTodayString: String {
 		let dateFormatter = DateFormatter()
 		dateFormatter.locale = Locale(identifier: "en_US")
 		dateFormatter.dateFormat = "d MMM"
@@ -95,7 +95,7 @@ extension MainPresenter: MainPresenterProtocol {
 		return dateStr
 	}
 	
-	func getTimeArray() -> [String] {
+    var getTimeArray: [String] {
 		
 		var timeArray = [String]()
 		
@@ -111,7 +111,7 @@ extension MainPresenter: MainPresenterProtocol {
 		return timeArray
 	}
 	
-	func getDateArray() -> [String] {
+    var getDateArray: [String] {
 		
 		var datesArray = [String]()
 		
