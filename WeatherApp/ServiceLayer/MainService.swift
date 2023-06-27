@@ -8,7 +8,6 @@
 import Foundation
 
 protocol MainServiceProtocol: AnyObject {
-	init(networkService: NetworkServiceProtocol, locationService: LocationServiceProtocol)
 	func getWeather(adress: String, completion: @escaping (Result<Weather?, Error>) -> Void)
 }
 
@@ -16,7 +15,10 @@ class MainService: MainServiceProtocol {
 	let networkService: NetworkServiceProtocol
 	let locationService: LocationServiceProtocol
 	
-	required init(networkService: NetworkServiceProtocol, locationService: LocationServiceProtocol) {
+	init(
+        networkService: NetworkServiceProtocol = NetworkService(),
+        locationService: LocationServiceProtocol = LocationService()
+    ) {
 		self.networkService = networkService
 		self.locationService = locationService
 	}
