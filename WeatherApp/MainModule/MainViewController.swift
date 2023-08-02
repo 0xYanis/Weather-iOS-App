@@ -12,7 +12,7 @@ final class MainViewController: UIViewController {
     
     var presenter: MainPresenterProtocol?
     
-    private let tableView = WeatherTableView()
+    private lazy var tableView = WeatherTableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,7 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewProtocol {
+    
     func succes() {
         tableView.reloadData()
     }
@@ -29,9 +30,11 @@ extension MainViewController: MainViewProtocol {
     func failure(error: Error) {
         alert(message: error.localizedDescription)
     }
+    
 }
 
 private extension MainViewController {
+    
     func initialize() {
         navigationItem.rightBarButtonItem = makeRightBarButtonItem
         createTableView()
@@ -54,17 +57,26 @@ private extension MainViewController {
     
     func alert(message: String) {
         let alertController = UIAlertController(
-            title: "Error", message: message, preferredStyle: .alert
+            title: "Error",
+            message: message,
+            preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil
+        )
         alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true)
     }
     
     var makeRightBarButtonItem: UIBarButtonItem {
         let button = UIBarButtonItem(
-            title: nil, image: UIImage(systemName: "plus.circle.fill"),
-            target: self, action: nil,menu: makeDropDownMenu
+            title: nil,
+            image: UIImage(systemName: "plus.circle.fill"),
+            target: self,
+            action: nil,
+            menu: makeDropDownMenu
         )
         button.tintColor = .white
         button.accessibilityIdentifier = "addBarButtonItem"
@@ -73,7 +85,8 @@ private extension MainViewController {
     
     var makeDropDownMenu: UIMenu {
         let newLocItem = UIAction(
-            title: "Set new location?", image: UIImage(systemName: "mappin.and.ellipse")
+            title: "Set new location?",
+            image: UIImage(systemName: "mappin.and.ellipse")
         ) { [weak self] _ in
             self?.showNewLocationActionSheet()
         }
@@ -83,7 +96,9 @@ private extension MainViewController {
 
     func showNewLocationActionSheet() {
         let actionSheet = UIAlertController(
-            title: " ", message: nil, preferredStyle: .actionSheet
+            title: " ",
+            message: nil,
+            preferredStyle: .actionSheet
         )
         actionSheet.view.addSubview(textField)
         actionSheet.addAction(cancelAction)
@@ -93,7 +108,9 @@ private extension MainViewController {
     }
 
     var okAction: UIAlertAction {
-        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+        let okAction = UIAlertAction(
+            title: "OK",
+            style: .default) { [weak self] _ in
             guard let self = self else { return }
             let address = self.textField.text ?? ""
             self.presenter?.setLocation(adress: address)
@@ -106,7 +123,8 @@ private extension MainViewController {
     
     var cancelAction: UIAlertAction {
         let cancelAction = UIAlertAction(
-            title: "Cancel", style: .cancel, handler: nil
+            title: "Cancel",
+            style: .cancel
         )
         cancelAction.accessibilityIdentifier = "cancelAction"
         return cancelAction
@@ -117,7 +135,8 @@ private extension MainViewController {
         let textField = UITextField(
             frame: CGRect(
                 x: 8, y: 8,
-                width: 250, height: 30
+                width: 250,
+                height: 30
             )
         )
         textField.placeholder = "Enter Location here"
@@ -129,23 +148,26 @@ private extension MainViewController {
 
 //MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
+    
     func tableView(
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
     ) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return self.calculateHeight(multiplier: 1.89)
+            return self.calculateHeight(multiply: 1.89)
         case 1:
-            return self.calculateHeight(multiplier: 5.6)
+            return self.calculateHeight(multiply: 5.6)
         default:
-            return self.calculateHeight(multiplier: 3.27)
+            return self.calculateHeight(multiply: 3.27)
         }
     }
     
-    private func calculateHeight(multiplier: CGFloat) -> CGFloat {
+    private func calculateHeight(multiply: CGFloat) -> CGFloat {
         let screenHeight = UIScreen.main.bounds.height
-        let tableСellHeight = screenHeight - view.safeAreaInsets.top - view.safeAreaInsets.bottom
-        return tableСellHeight / multiplier
+        let safe = view.safeAreaInsets
+        let tableСellHeight = screenHeight - safe.top - safe.bottom
+        return tableСellHeight / multiply
     }
+    
 }
