@@ -8,5 +8,6 @@
 import Foundation
 
 enum ServiceError: String, Error {
+    case invalidUrl = "Bad URL"
     case failedLocation = "User location get failed"
 }
