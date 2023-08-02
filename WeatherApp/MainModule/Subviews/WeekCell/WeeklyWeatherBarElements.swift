@@ -9,19 +9,38 @@ import UIKit
 
 class WeeklyWeatherBarElements: UICollectionViewCell {
 	
-	func configure(with dayWeather: Forecast, date: String) {
-		dayLabel.text = date
-		imageView.image = UIImage(named: dayWeather.parts?.day?.condition?.rawValue ?? "")
-		temperatureLabel.text = String(describing: dayWeather.parts?.day?.feelsLike ?? 0)
-	}
-	
+    private let dayLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica", size: UIConstants.dayLabelFontSize)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+    
+    private let temperatureLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 3)
+        label.layer.shadowRadius = 5
+        label.layer.shadowOpacity = 0.5
+        label.layer.masksToBounds = false
+        return label
+    }()
+    
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initialize()
 	}
 	
 	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		fatalError("")
 	}
 	
 	private enum UIConstants {
@@ -32,34 +51,17 @@ class WeeklyWeatherBarElements: UICollectionViewCell {
 		static let temperatureLabelFontSize: CGFloat      = 28
 		static let temperatureLabelToImageOffset: CGFloat = 10
 	}
-	
-	private let dayLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica", size: UIConstants.dayLabelFontSize)
-		label.textColor = .white
-		return label
-	}()
-	
-	private let imageView: UIImageView = {
-		let view = UIImageView()
-		view.contentMode = .scaleAspectFill
-		return view
-	}()
-	
-	private let temperatureLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
-		label.textColor = .white
-		label.layer.shadowColor = UIColor.black.cgColor
-		label.layer.shadowOffset = CGSize(width: 0, height: 3)
-		label.layer.shadowRadius = 5
-		label.layer.shadowOpacity = 0.5
-		label.layer.masksToBounds = false
-		return label
-	}()
+    
+    func configure(with dayWeather: Forecast, date: String) {
+        dayLabel.text = date
+        imageView.image = UIImage(named: dayWeather.parts?.day?.condition?.rawValue ?? "")
+        temperatureLabel.text = String(describing: dayWeather.parts?.day?.feelsLike ?? 0)
+    }
+    
 }
 
 private extension WeeklyWeatherBarElements {
+    
 	func initialize() {
 		backgroundColor = UIColor.BarColor
 		layer.cornerRadius = 15
@@ -84,4 +86,5 @@ private extension WeeklyWeatherBarElements {
 			make.centerX.equalToSuperview()
 		}
 	}
+    
 }

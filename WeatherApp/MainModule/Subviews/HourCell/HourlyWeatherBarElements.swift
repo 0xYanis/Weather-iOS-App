@@ -9,12 +9,46 @@ import UIKit
 
 class HourlyWeatherBarElements: UICollectionViewCell {
 	
-	func configure(with hourlyWeather: Hour, timeArray: String) {
-		timeLabel.text = timeArray
-		imageView.image = UIImage(named: hourlyWeather.condition?.rawValue ?? "")
-		temperatureLabel.text = String(describing: hourlyWeather.temp ?? 0)
-	}
-	
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica", size: UIConstants.timeLabelFontSize)
+        label.text = "9:00 AM"
+        label.textColor = .white
+        return label
+    }()
+    
+    private let imageView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "rainycloud")
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+    
+    private let temperatureLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
+        label.text = "10" + "\u{00B0}"
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 3)
+        label.layer.shadowRadius = 5
+        label.layer.shadowOpacity = 0.5
+        label.layer.masksToBounds = false
+        return label
+    }()
+    
+    private let degreeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\u{00B0}"
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 3)
+        label.layer.shadowRadius = 2
+        label.layer.shadowOpacity = 0.5
+        label.layer.masksToBounds = false
+        return label
+    }()
+    
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initialize()
@@ -23,7 +57,14 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+	    
+    func configure(with hourlyWeather: Hour, timeArray: String) {
+        timeLabel.text = timeArray
+        imageView.image = UIImage(named: hourlyWeather.condition?.rawValue ?? "")
+        temperatureLabel.text = String(describing: hourlyWeather.temp ?? 0)
+    }
+
+    
 	private enum UIConstants {
 		static let timeLabelFontSize: CGFloat             = 12
 		static let imageViewSize: CGFloat                 = 40
@@ -32,50 +73,10 @@ class HourlyWeatherBarElements: UICollectionViewCell {
 		static let temperatureLabelToImageOffset: CGFloat = 5
 	}
 	
-	private let timeLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica", size: UIConstants.timeLabelFontSize)
-		label.text = "9:00 AM"
-		label.textColor = .white
-		return label
-	}()
-	
-	private let imageView: UIImageView = {
-		let view = UIImageView()
-		view.image = UIImage(named: "rainycloud")
-		view.contentMode = .scaleAspectFill
-		return view
-	}()
-	
-	private let temperatureLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold", size: UIConstants.temperatureLabelFontSize)
-		label.text = "10" + "\u{00B0}"
-		label.textColor = .white
-		label.layer.shadowColor = UIColor.black.cgColor
-		label.layer.shadowOffset = CGSize(width: 0, height: 3)
-		label.layer.shadowRadius = 5
-		label.layer.shadowOpacity = 0.5
-		label.layer.masksToBounds = false
-		return label
-	}()
-	
-	private let degreeLabel: UILabel = {
-		let label = UILabel()
-		//
-		label.text = "\u{00B0}"
-		label.textColor = .white
-		label.layer.shadowColor = UIColor.black.cgColor
-		label.layer.shadowOffset = CGSize(width: 0, height: 3)
-		label.layer.shadowRadius = 2
-		label.layer.shadowOpacity = 0.5
-		label.layer.masksToBounds = false
-		return label
-	}()
-	
 }
 
 private extension HourlyWeatherBarElements {
+    
 	func initialize() {
 		contentView.addSubview(timeLabel)
 		timeLabel.snp.makeConstraints { make in
@@ -95,4 +96,5 @@ private extension HourlyWeatherBarElements {
 			make.centerX.equalToSuperview()
 		}
 	}
+    
 }

@@ -9,14 +9,68 @@ import UIKit
 
 class TodaysWeatherElements: UICollectionViewCell {
 	
-	func configure(with todaysWeather: Weather, today: String) {
-		locationLabel.text = todaysWeather.geoObject.province?.name ?? "Earth" 
-		todayLabel.text = today
-		imageView.image = UIImage(named: todaysWeather.fact.condition?.rawValue ?? "")
-		temperatureLabel.text = String(describing: todaysWeather.fact.temp ?? 0)
-		descriptionLabel.text = todaysWeather.fact.condition?.rawValue
-	}
-	
+    private let locationLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(
+            name: "Helvetica-Bold",
+            size: UIConstants.locationLabelFontSize)
+        label.text = "My location"
+        label.textColor = .white
+        return label
+    }()
+    
+    private let todayLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(
+            name: "Helvetica-Bold",
+            size: UIConstants.todayLabelFontSize)
+        label.textColor = .systemGray6
+        return label
+    }()
+    
+    private let imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
+    
+    private let temperatureLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(
+            name: "Helvetica-Bold",
+            size: UIConstants.temperatureLabelFontSize)
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 3)
+        label.layer.shadowRadius = 5
+        label.layer.shadowOpacity = 0.5
+        label.layer.masksToBounds = false
+        return label
+    }()
+    
+    private let degreeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(
+            name: "Helvetica-Bold",
+            size: UIConstants.degreeLabelFontSize)
+        label.text = "\u{00B0}"
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 3)
+        label.layer.shadowRadius = 2
+        label.layer.shadowOpacity = 0.5
+        label.layer.masksToBounds = false
+        return label
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Helvetica-Bold",
+                            size: UIConstants.descriptionLabelFontSize)
+        label.textColor = .systemGray6
+        return label
+    }()
+    
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		initialize()
@@ -38,67 +92,19 @@ class TodaysWeatherElements: UICollectionViewCell {
 		static let descriptionLabelFontSize: CGFloat       = 16
 		static let descriptionLabelToTempOffset: CGFloat   = 10
 	}
-	
-	private let locationLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold",
-							size: UIConstants.locationLabelFontSize)
-		label.text = "My location"
-		label.textColor = .white
-		return label
-	}()
-	//
-	private let todayLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold",
-							size: UIConstants.todayLabelFontSize)
-		label.textColor = .systemGray6
-		return label
-	}()
-	
-	private let imageView: UIImageView = {
-		let view = UIImageView()
-		view.contentMode = .scaleAspectFill
-		return view
-	}()
-	
-	private let temperatureLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold",
-							size: UIConstants.temperatureLabelFontSize)
-		label.textColor = .white
-		label.layer.shadowColor = UIColor.black.cgColor
-		label.layer.shadowOffset = CGSize(width: 0, height: 3)
-		label.layer.shadowRadius = 5
-		label.layer.shadowOpacity = 0.5
-		label.layer.masksToBounds = false
-		return label
-	}()
-	
-	private let degreeLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold",
-							size: UIConstants.degreeLabelFontSize)
-		label.text = "\u{00B0}"
-		label.textColor = .white
-		label.layer.shadowColor = UIColor.black.cgColor
-		label.layer.shadowOffset = CGSize(width: 0, height: 3)
-		label.layer.shadowRadius = 2
-		label.layer.shadowOpacity = 0.5
-		label.layer.masksToBounds = false
-		return label
-	}()
-	
-	private let descriptionLabel: UILabel = {
-		let label = UILabel()
-		label.font = UIFont(name: "Helvetica-Bold",
-							size: UIConstants.descriptionLabelFontSize)
-		label.textColor = .systemGray6
-		return label
-	}()
+    
+    func configure(with todaysWeather: Weather, today: String) {
+        locationLabel.text = todaysWeather.geoObject.province?.name ?? "Earth"
+        todayLabel.text = today
+        imageView.image = UIImage(named: todaysWeather.fact.condition?.rawValue ?? "")
+        temperatureLabel.text = String(describing: todaysWeather.fact.temp ?? 0)
+        descriptionLabel.text = todaysWeather.fact.condition?.rawValue
+    }
+    
 }
 
 private extension TodaysWeatherElements {
+    
 	func initialize() {
 		contentView.addSubview(locationLabel)
 		locationLabel.snp.makeConstraints { make in
@@ -136,4 +142,5 @@ private extension TodaysWeatherElements {
 				.offset(UIConstants.descriptionLabelToTempOffset)
 		}
 	}
+    
 }
