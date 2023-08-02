@@ -8,10 +8,14 @@
 import Foundation
 
 protocol MainServiceProtocol: AnyObject {
-	func getWeather(adress: String, completion: @escaping (Result<Weather?, Error>) -> Void)
+    typealias CompletionBlock = (Result<Weather?, Error>) -> Void
+	func getWeather(adress: String, completion: @escaping CompletionBlock)
 }
 
 class MainService: MainServiceProtocol {
+    
+    typealias CompletionBlock = (Result<Weather?, Error>) -> Void
+    
 	let networkService: NetworkServiceProtocol
 	let locationService: LocationServiceProtocol
 	
@@ -23,18 +27,22 @@ class MainService: MainServiceProtocol {
 		self.locationService = locationService
 	}
 	
-	func getWeather(adress: String, completion: @escaping (Result<Weather?, Error>) -> Void) {
+	func getWeather(adress: String, completion: @escaping CompletionBlock) {
 		locationService.getUserLocation(from: adress) { [weak self] userLocation in
 			guard let self = self else { return }
 			
 			guard let userLocation = userLocation else {
-				completion(.failure(NSError(domain: "Unable to get user location", code: 0, userInfo: nil)))
+                completion(.failure(ServiceError.failedLocation))
 				return
 			}
 			
-			self.networkService.getForecast(latitude: userLocation[0], longitude: userLocation[1]) { result in
+			self.networkService.getForecast(
+                latitude: userLocation[0],
+                longitude: userLocation[1]
+            ) { result in
 				completion(result)
 			}
 		}
 	}
+    
 }
