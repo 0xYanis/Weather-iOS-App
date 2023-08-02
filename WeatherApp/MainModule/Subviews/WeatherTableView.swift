@@ -8,22 +8,32 @@
 import UIKit
 import SnapKit
 
+protocol TableCellProtocol: UITableViewCell {
+    static var cellId: String { get }
+}
+
 final class WeatherTableView: UITableView {
     
     weak var presenter: MainPresenterProtocol?
     
+    typealias animation = CollectionViewAnimation
+    
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
+        initialize()
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("")
     }
+    
 }
 
 private extension WeatherTableView {
+    
     func initialize() {
-        
+        createTableView()
+        tableViewRegister()
     }
     
     func createTableView() {
@@ -34,21 +44,14 @@ private extension WeatherTableView {
     }
     
     func tableViewRegister() {
-        register(
-            TodaysWeatherSetCell.self,
-            forCellReuseIdentifier: TodaysWeatherSetCell.cellId
-        )
-        register(
-            HourlyWeatherSetCell.self,
-            forCellReuseIdentifier: HourlyWeatherSetCell.cellId
-        )
-        
-        register(
-            WeeklyWeatherSetCell.self,
-            forCellReuseIdentifier: WeeklyWeatherSetCell.cellId
-        )
+        register(TodaysWeatherSetCell.self)
+        register(HourlyWeatherSetCell.self)
+        register(WeeklyWeatherSetCell.self)
     }
     
+    func register<C: TableCellProtocol>(_ cell: C.Type) {
+        register(C.self, forCellReuseIdentifier: cell.cellId)
+    }
     
 }
 
@@ -74,34 +77,36 @@ extension WeatherTableView: UITableViewDataSource {
         
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: TodaysWeatherSetCell.cellId,
-                for: indexPath
-            ) as! TodaysWeatherSetCell
+            let cell = dequeue(TodaysWeatherSetCell.self, tableView, indexPath)
             cell.configure(with: weather, today: presenter?.todayString ?? "")
-            CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
+            animation.animateReloadData(collectionView: cell.collectionView)
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: HourlyWeatherSetCell.cellId,
-                for: indexPath
-            ) as! HourlyWeatherSetCell
+            let cell = dequeue(HourlyWeatherSetCell.self, tableView, indexPath)
             cell.configure(with: presenter?.weather?.forecasts?[indexPath.row - 1].hours ?? [],
-                           timeArray: presenter?.timeArray ?? []
-            )
-            CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
+                           timeArray: presenter?.timeArray ?? [])
+            animation.animateReloadData(collectionView: cell.collectionView)
             return cell
         default:
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: WeeklyWeatherSetCell.cellId,
-                for: indexPath
-            ) as! WeeklyWeatherSetCell
+            let cell = dequeue(WeeklyWeatherSetCell.self, tableView, indexPath)
             cell.configure(with: weather.forecasts ?? [],
-                           dateArray: presenter?.dateArray ?? []
-            )
+                           dateArray: presenter?.dateArray ?? [])
             cell.accessibilityIdentifier = "WeeklyWeatherSetCell"
-            CollectionViewAnimation.animateReloadData(collectionView: cell.collectionView)
+            animation.animateReloadData(collectionView: cell.collectionView)
             return cell
         }
     }
+    
+    private func dequeue<C: TableCellProtocol>(
+        _ cell: C.Type,
+        _ tableView: UITableView,
+        _ indexPath: IndexPath
+    ) -> C {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: cell.cellId,
+            for: indexPath
+        ) as! C
+        return cell
+    }
+    
 }

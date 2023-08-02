@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodaysWeatherSetCell: UITableViewCell {
+class TodaysWeatherSetCell: UITableViewCell, TableCellProtocol {
 	
     static let cellId = "TodaysWeatherSetCell"
     
