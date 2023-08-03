@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HourlyWeatherSetCell: UITableViewCell, TableCellProtocol {
+final class HourlyWeatherSetCell: UITableViewCell, TableCellProtocol {
 	
     static let cellId = "HourlyWeatherSetCell"
     

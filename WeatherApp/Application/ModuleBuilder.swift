@@ -11,14 +11,13 @@ protocol Builder {
 	static func createMainModule() -> UIViewController
 }
 
-class ModuleBuilder: Builder {
+final class ModuleBuilder: Builder {
 	static func createMainModule() -> UIViewController {
         let mainService = MainService()
 		let view = MainViewController()
 		let presenter = MainPresenter(
             view: view,
-            mainService: mainService
-        )
+            mainService: mainService)
 		view.presenter = presenter
         
 		return view

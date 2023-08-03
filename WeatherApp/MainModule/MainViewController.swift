@@ -12,7 +12,7 @@ final class MainViewController: UIViewController {
     
     var presenter: MainPresenterProtocol?
     
-    private lazy var tableView = WeatherTableView()
+    private var tableView = WeatherTableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,13 +41,14 @@ private extension MainViewController {
     }
     
     func createTableView() {
-        tableView.delegate = self
-        tableView.presenter = presenter
-        tableView.backgroundView = GradientViewFactory.makeGradientView(
+        let gradient = GradientViewFactory.makeGradientView(
             frame: view.frame,
             UIColor.topGradientColor,
-            UIColor.BottomGradientColor
-        )
+            UIColor.BottomGradientColor)
+        
+        tableView.backgroundView = gradient
+        tableView.presenter = presenter
+        tableView.delegate = self
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -93,7 +94,7 @@ private extension MainViewController {
         newLocItem.accessibilityIdentifier = "newLocItem"
         return UIMenu(children: [newLocItem])
     }
-
+    
     func showNewLocationActionSheet() {
         let actionSheet = UIAlertController(
             title: " ",
@@ -103,14 +104,15 @@ private extension MainViewController {
         actionSheet.view.addSubview(textField)
         actionSheet.addAction(cancelAction)
         actionSheet.addAction(okAction)
-
+        
         self.present(actionSheet, animated: true)
     }
-
+    
     var okAction: UIAlertAction {
         let okAction = UIAlertAction(
             title: "OK",
-            style: .default) { [weak self] _ in
+            style: .default
+        ) { [weak self] _ in
             guard let self = self else { return }
             let address = self.textField.text ?? ""
             self.presenter?.setLocation(adress: address)

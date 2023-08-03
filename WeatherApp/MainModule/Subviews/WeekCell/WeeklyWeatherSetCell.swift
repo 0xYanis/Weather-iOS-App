@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeeklyWeatherSetCell: UITableViewCell, TableCellProtocol {
+final class WeeklyWeatherSetCell: UITableViewCell, TableCellProtocol {
 	
     static let cellId = "WeeklyWeatherSetCell"
     

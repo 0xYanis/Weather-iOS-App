@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HourlyWeatherBarElements: UICollectionViewCell {
+final class HourlyWeatherBarElements: UICollectionViewCell {
 	
     private let timeLabel: UILabel = {
         let label = UILabel()

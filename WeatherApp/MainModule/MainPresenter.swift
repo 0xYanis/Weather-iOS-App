@@ -53,17 +53,20 @@ final class MainPresenter {
     }
     
     private var locationFromUD: String {
-        if let storedLocation = UserDefaults.standard.string(forKey: "location") {
+        let userData = UserDefaults.standard
+        if let storedLocation = userData.string(forKey: "location") {
             location = storedLocation
         } else {
-            UserDefaults.standard.set(location, forKey: "location")
+            userData.set(location, forKey: "location")
         }
         
         return location
     }
+    
 }
 
 extension MainPresenter: MainPresenterProtocol {
+    
 	func getForecast(adress: String) {
 		mainService.getWeather(adress: adress) { [weak self] result in
 			guard let self = self else { return }
@@ -83,7 +86,7 @@ extension MainPresenter: MainPresenterProtocol {
 	}
     
 	func setLocation(adress: String) {
-		location = adress
+        self.location = adress
 		UserDefaults.standard.set(location, forKey: "location")
 	}
 	
@@ -104,7 +107,8 @@ extension MainPresenter: MainPresenterProtocol {
 		timeArray.append("NOW")
 		
 		for i in 1...4 {
-			if let date = Calendar.current.date(byAdding: .hour, value: i, to: Date()) {
+            let calendar = Calendar.current
+			if let date = calendar.date(byAdding: .hour, value: i, to: Date()) {
 				timeArray.append(dateFormatter.string(from: date))
 			}
 		}
@@ -121,7 +125,8 @@ extension MainPresenter: MainPresenterProtocol {
 		datesArray.append("Today")
 		
 		for i in 1...6 {
-			let date = Calendar.current.date(byAdding: .day, value: i, to: Date())!
+            let calendar = Calendar.current
+			let date = calendar.date(byAdding: .day, value: i, to: Date())!
 			let dateString = formatter.string(from: date)
 			datesArray.append(dateString)
 		}

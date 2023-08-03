@@ -12,7 +12,7 @@ protocol MainServiceProtocol: AnyObject {
 	func getWeather(adress: String, completion: @escaping CompletionBlock)
 }
 
-class MainService: MainServiceProtocol {
+final class MainService: MainServiceProtocol {
     
     typealias CompletionBlock = (Result<Weather?, Error>) -> Void
     

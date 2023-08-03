@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionViewAnimation {
+final class CollectionViewAnimation {
 	
 	static func animateReloadData(collectionView: UICollectionView) {
 		UIView.animate(withDuration: 0.0, animations: {
@@ -19,4 +19,5 @@ class CollectionViewAnimation {
 			}
 		})
 	}
+    
 }

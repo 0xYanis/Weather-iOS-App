@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TodaysWeatherElements: UICollectionViewCell {
+final class TodaysWeatherElements: UICollectionViewCell {
 	
     private let locationLabel: UILabel = {
         let label = UILabel()

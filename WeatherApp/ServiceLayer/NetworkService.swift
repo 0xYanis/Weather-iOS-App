@@ -13,7 +13,7 @@ protocol NetworkServiceProtocol: AnyObject {
 	func getForecast(latitude: Double, longitude: Double, completion: @escaping completionBlock)
 }
 
-class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
 	
     typealias completionBlock = (Result<Weather?, Error>) -> Void
     

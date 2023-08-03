@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeeklyWeatherBarElements: UICollectionViewCell {
+final class WeeklyWeatherBarElements: UICollectionViewCell {
 	
     private let dayLabel: UILabel = {
         let label = UILabel()
