@@ -153,7 +153,6 @@
 			children = (
 				098121F929C0611500737D51 /* AppDelegate.swift */,
 				098121FB29C0611500737D51 /* SceneDelegate.swift */,
-				0981224529C0784A00737D51 /* ModuleBuilder.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -171,6 +170,7 @@
 		0981223B29C06F9A00737D51 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				0981224529C0784A00737D51 /* ModuleBuilder.swift */,
 				097C16A629C2229800320138 /* Weather.swift */,
 				0981224129C0724000737D51 /* MainPresenter.swift */,
 				0981224329C075DB00737D51 /* MainViewController.swift */,
